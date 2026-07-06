@@ -46,12 +46,15 @@ export default function ChatWidget() {
   }, [isOpen]);
 
   useEffect(() => {
-    if (mobileMessagesEndRef.current) {
-      mobileMessagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-    if (desktopMessagesEndRef.current) {
-      desktopMessagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
+    const timeout = setTimeout(() => {
+      if (mobileMessagesEndRef.current) {
+        mobileMessagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+      if (desktopMessagesEndRef.current) {
+        desktopMessagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+    return () => clearTimeout(timeout);
   }, [messages]);
 
   const handleToggle = () => {
@@ -190,7 +193,7 @@ export default function ChatWidget() {
       </div>
 
       {/* Chat Area */}
-      <div className="p-4 flex-1 overflow-y-auto bg-transparent flex flex-col gap-4 max-h-[65vh] md:max-h-[400px]">
+      <div className="p-4 flex-1 overflow-y-auto bg-transparent flex flex-col gap-4 h-[65vh] md:h-[400px]">
         <div className="flex gap-3">
           <div className="bg-black text-white p-2 rounded-full h-fit flex-shrink-0">
             <Bot size={16} />
