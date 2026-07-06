@@ -177,7 +177,7 @@ export default function ChatWidget() {
     handleSend(inputValue);
   };
 
-  const renderChatWindow = (endRef: React.RefObject<HTMLDivElement>) => (
+  const renderChatWindow = (endRef: React.RefObject<HTMLDivElement | null>) => (
     <>
       {/* Header */}
       <div className="bg-white/50 border-b border-gray-200 p-4 flex items-center justify-between">
