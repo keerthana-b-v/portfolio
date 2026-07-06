@@ -273,7 +273,7 @@ export default function ChatWidget() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="fixed z-[60] bottom-[11rem] left-4 md:bottom-[110px] md:left-auto md:right-6 px-4 py-2 bg-black text-white text-sm rounded-full shadow-lg pointer-events-auto"
+            className="fixed z-[60] top-8 right-[5.5rem] md:top-auto md:bottom-11 md:right-[7.5rem] md:left-auto px-4 py-2 bg-black text-white text-sm rounded-full shadow-lg pointer-events-auto"
           >
             Ask about my work &rarr;
           </motion.div>
