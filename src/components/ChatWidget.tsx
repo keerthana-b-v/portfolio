@@ -311,7 +311,7 @@ export default function ChatWidget() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="hidden md:flex absolute z-[60] bottom-[calc(100%+16px)] right-[-10px] md:right-0 md:left-auto md:translate-x-0 md:w-[450px] bg-slate-50/95 backdrop-blur-2xl border border-gray-200 rounded-2xl shadow-[0_30px_100px_rgba(0,0,0,0.2)] pointer-events-auto overflow-hidden flex flex-col cursor-default origin-bottom-right"
+              className="hidden md:flex absolute z-[60] bottom-[calc(100%+16px)] right-[-10px] md:right-0 md:left-auto md:translate-x-0 md:w-[32rem] bg-slate-50/95 backdrop-blur-2xl border border-gray-200 rounded-2xl shadow-[0_30px_100px_rgba(0,0,0,0.2)] pointer-events-auto overflow-hidden flex flex-col cursor-default origin-bottom-right"
               style={{ maxHeight: "80vh" }}
             >
               {renderChatWindow(desktopMessagesEndRef)}
