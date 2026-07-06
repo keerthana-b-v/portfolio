@@ -18,6 +18,13 @@ html, body {
   height: 100%;
   overflow: hidden;
 }
+
+@media (min-width: 768px) {
+  html {
+    font-size: 11.5px;
+  }
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);

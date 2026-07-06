@@ -11,7 +11,7 @@ export const ResearchShowcase = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-6xl w-full h-auto md:h-full md:max-h-[600px] bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-100 flex flex-col md:flex-row overflow-hidden"
+        className="max-w-6xl w-full h-auto bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-100 flex flex-col md:flex-row overflow-hidden"
       >
         {/* Left Content Area */}
         <div className="flex-[3] p-8 md:p-12 flex flex-col justify-center overflow-y-auto">
