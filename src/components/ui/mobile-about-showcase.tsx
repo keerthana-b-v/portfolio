@@ -6,21 +6,7 @@ import { MapPin } from "lucide-react";
 export const MobileAboutShowcase = () => {
   return (
     <div className="flex flex-col h-full w-full px-6 overflow-hidden items-center justify-start pt-4">
-      {/* Profile Image */}
-      <div className="w-full h-[220px] rounded-3xl overflow-hidden shadow-2xl relative mb-6 shrink-0">
-        <img 
-          src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop" 
-          alt="Keerthana B V" 
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-        <div className="absolute bottom-4 left-4 text-white">
-          <h3 className="text-xl font-black tracking-tight">Keerthana B V</h3>
-          <p className="font-medium opacity-90 flex items-center gap-1 text-xs mt-1">
-            <MapPin size={12} /> Bengaluru, Karnataka
-          </p>
-        </div>
-      </div>
+      {/* Image removed for mobile view to save space as requested */}
 
       {/* Text Area (Internally scrollable if needed) */}
       <div className="flex-1 overflow-y-auto pb-8 w-full hide-scrollbar">
