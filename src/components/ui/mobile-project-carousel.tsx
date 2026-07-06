@@ -31,7 +31,7 @@ const projects: Project[] = [
       { value: "Sheets", label: "DB" },
       { value: "Twilio", label: "SMS" }
     ],
-    image: "/ai_voice_agent.png",
+    image: "/voice-bot.png",
     icons: [
       { icon: <FaRobot size={16} />, label: "Vapi AI" },
       { icon: <FaDatabase size={16} />, label: "Google Sheets" },
@@ -53,7 +53,7 @@ const projects: Project[] = [
       { value: "Live", label: "Status" }
     ],
     link: "https://github.com/keerthana-b-v/AI-Powered-Legal-Document-Analysis-with-an-Integrated-Trust-and-Safety-Framework-",
-    image: "/ai_legal_document.png",
+    image: "/legal.png",
     icons: [
       { icon: <SiPytorch size={16} />, label: "PyTorch" },
       { icon: <SiHuggingface size={16} />, label: "Hugging Face" },
@@ -74,7 +74,7 @@ const projects: Project[] = [
       { value: "RAG", label: "Pipe" },
       { value: "Auto", label: "Hand" }
     ],
-    image: "/ai_ecommerce_agent.png",
+    image: "/chatbot.png",
     icons: [
       { icon: <SiPython size={16} />, label: "Python" },
       { icon: <SiLangchain size={16} />, label: "LangChain" },

@@ -324,7 +324,7 @@ export default function ChatWidget() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="fixed z-[60] top-8 right-[5.5rem] md:top-auto md:bottom-11 md:right-[7.5rem] md:left-auto px-4 py-2 bg-black text-white text-sm rounded-full shadow-lg pointer-events-auto"
+            className="fixed z-[60] top-8 right-[5.5rem] md:top-auto md:bottom-17 md:right-[9rem] md:left-auto px-4 py-2 bg-black text-white text-sm rounded-full shadow-lg pointer-events-auto"
           >
             Ask about my work &rarr;
           </motion.div>
@@ -354,7 +354,7 @@ export default function ChatWidget() {
         dragConstraints={{ top: -800, left: -1000, right: 0, bottom: 0 }} 
         dragElastic={0} 
         dragMomentum={false}
-        className={`fixed top-4 right-4 md:top-auto md:bottom-6 md:right-6 md:left-auto z-[9999] pointer-events-auto font-sans ${isOpen ? 'hidden md:block' : ''}`}
+        className={`fixed top-4 right-4 md:top-auto md:bottom-12 md:right-12 md:left-auto z-[9999] pointer-events-auto font-sans ${isOpen ? 'hidden md:block' : ''}`}
       >
         <AnimatePresence>
           {isOpen && (

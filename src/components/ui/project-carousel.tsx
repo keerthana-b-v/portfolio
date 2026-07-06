@@ -26,7 +26,7 @@ const projects: Project[] = [
       "Built a serverless pipeline in Make.com using custom webhooks to automatically extract structured call data and log it directly as new rows in Google Sheets.",
       "Integrated Twilio API to instantly send UPI payment links via SMS upon call ending, adding custom error-handling."
     ],
-    image: "/ai_voice_agent.png",
+    image: "/voice-bot.png",
     icons: [
       { icon: <FaRobot size={24} />, label: "Vapi AI" },
       { icon: <FaSms size={24} />, label: "Twilio API" },
@@ -43,7 +43,7 @@ const projects: Project[] = [
       "Engineered a data pipeline using Pandas and Hugging Face Datasets to parse character-span annotations across long-form contracts.",
       "Tracked precision, recall, and confusion matrix analysis to address class imbalance, surfacing this in a live React dashboard."
     ],
-    image: "/ai_legal_document.png",
+    image: "/legal.png",
     link: "https://github.com/keerthana-b-v/AI-Powered-Legal-Document-Analysis-with-an-Integrated-Trust-and-Safety-Framework-",
     icons: [
       { icon: <SiPytorch size={24} />, label: "PyTorch" },
@@ -61,7 +61,7 @@ const projects: Project[] = [
       "Validated retrieval accuracy and system safety through a structured manual evaluation suite covering in-scope queries and boundary edge cases.",
       "Developed simulated enterprise features including CRM context injection into the LLM prompt and an automated ticketing system for human escalation."
     ],
-    image: "/ai_ecommerce_agent.png",
+    image: "/chatbot.png",
     icons: [
       { icon: <SiPython size={24} />, label: "Python" },
       { icon: <SiLangchain size={24} />, label: "LangChain" },
