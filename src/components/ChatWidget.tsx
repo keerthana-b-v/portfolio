@@ -223,7 +223,7 @@ export default function ChatWidget() {
               <button
                 key={chipText}
                 onClick={() => handleSend(chipText)}
-                className="text-left text-sm text-gray-600 bg-gray-50 border border-gray-100 hover:bg-gray-100 p-2.5 rounded-lg transition-colors cursor-pointer"
+                className="text-left text-sm text-blue-700 bg-blue-50 border-2 border-blue-200 hover:bg-blue-100 hover:border-blue-300 p-3 rounded-xl transition-all cursor-pointer font-medium shadow-sm"
               >
                 {chipText}
               </button>
@@ -296,7 +296,7 @@ export default function ChatWidget() {
         dragConstraints={{ top: -800, left: -1000, right: 0, bottom: 0 }} 
         dragElastic={0} 
         dragMomentum={false}
-        className="fixed bottom-28 right-4 md:bottom-6 md:right-6 md:left-auto md:top-auto z-[9999] pointer-events-auto font-sans"
+        className={`fixed bottom-28 right-4 md:bottom-6 md:right-6 md:left-auto md:top-auto z-[9999] pointer-events-auto font-sans ${isOpen ? 'hidden md:block' : ''}`}
       >
         <AnimatePresence>
           {isOpen && (
