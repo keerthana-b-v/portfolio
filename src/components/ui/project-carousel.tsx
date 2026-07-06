@@ -20,7 +20,7 @@ const projects: Project[] = [
   {
     id: 1,
     title: "AI Voice Agent",
-    role: "AI Integration Engineer",
+    role: "Voice AI Automation",
     description: [
       "Deployed a multilingual conversational voice agent (English/Tanglish) using Vapi AI and OpenAI GPT-4o-Mini to automate customer order intake and L1 FAQs.",
       "Built a serverless pipeline in Make.com using custom webhooks to automatically extract structured call data and log it directly as new rows in Google Sheets.",
@@ -37,7 +37,7 @@ const projects: Project[] = [
   {
     id: 2,
     title: "AI Legal Document Intelligence",
-    role: "Lead Full Stack AI Engineer",
+    role: "Applied NLP & Fine-Tuning",
     description: [
       "Fine-tuned Legal-BERT using LoRA for parameter-efficient training, achieving 84.9% F1-score and 84.7% accuracy on the 510-contract CUAD benchmark in ~3 hours.",
       "Engineered a data pipeline using Pandas and Hugging Face Datasets to parse character-span annotations across long-form contracts.",
@@ -55,7 +55,7 @@ const projects: Project[] = [
   {
     id: 3,
     title: "E-Commerce Customer Support Agent",
-    role: "AI Developer",
+    role: "RAG & Agent Workflows",
     description: [
       "Built a production-grade AI Agent with FastAPI and React; implemented a RAG pipeline utilizing FAISS vector search and recursive chunking.",
       "Validated retrieval accuracy and system safety through a structured manual evaluation suite covering in-scope queries and boundary edge cases.",

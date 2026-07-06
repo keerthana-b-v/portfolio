@@ -11,7 +11,7 @@ export const MobileAboutShowcase = () => {
       {/* Text Area (Internally scrollable if needed) */}
       <div className="flex-1 overflow-y-auto pb-8 w-full hide-scrollbar">
         <div className="prose prose-sm text-gray-700 leading-relaxed font-medium">
-          <h2 className="text-2xl font-black text-gray-900 tracking-tight mb-3 text-center">AI Implemented Developer</h2>
+          <h2 className="text-2xl font-black text-gray-900 tracking-tight mb-3 text-center">AI Agent Developer | Full-Stack Engineer</h2>
           <p className="text-gray-600 text-sm leading-relaxed text-justify mb-4">
             I'm a <span className="font-bold text-gray-900">Full Stack Developer</span> based in Bengaluru. My work sits at the intersection of modern web engineering and <span className="font-bold text-gray-900">applied AI</span> — I design schemas, integrate models, configure servers, and ship UIs that real people use.
           </p>

@@ -323,6 +323,18 @@ export default function Home() {
             white-space: nowrap;
           }
         `}</style>
+        {/* Core Headline & Subhead (Visible by Default) */}
+        <div className="text-center mb-10 md:mb-16 max-w-2xl px-6 flex flex-col items-center select-none">
+          <h1 className="text-2xl md:text-5xl font-black tracking-tight text-gray-900 mb-4 flex flex-col md:flex-row items-center gap-1 md:gap-3 leading-none">
+            <span>AI Agent Developer</span>
+            <span className="hidden md:inline text-gray-300 font-light">|</span>
+            <span className="text-gray-600 md:text-gray-900 font-bold">Full-Stack Engineer</span>
+          </h1>
+          <p className="text-xs md:text-base text-gray-500 max-w-lg leading-relaxed font-medium">
+            I build LLM agents and RAG systems — from a Legal-BERT model scoring 84.9% F1 to production chatbots — plus the full-stack apps that ship them.
+          </p>
+        </div>
+
         <button className="uiverse-btn">
           <div className="u-icon">
             <span className="u-text-icon u-hide">Keerthana</span>
@@ -343,16 +355,16 @@ export default function Home() {
           <span className="title ml-1">It's me</span>
           <div className="u-padding-left u-hide">
             <div className="u-padding-left-line">
-              <span className="u-padding-left-text">Full Stack</span>
+              <span className="u-padding-left-text">Full-Stack</span>
             </div>
           </div>
           <div className="u-padding-right u-hide">
             <div className="u-padding-right-line">
-              <span className="u-padding-right-text">AI Engineer</span>
+              <span className="u-padding-right-text">Agent Dev</span>
             </div>
           </div>
           <div className="u-background u-hide">
-            <span className="u-background-text">Busy building something...</span>
+            <span className="u-background-text">Building LLM agents that ship</span>
           </div>
           <div className="u-border u-hide">
             <span className="u-border-text">MCA</span>
