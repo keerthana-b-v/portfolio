@@ -24,7 +24,8 @@ export default function ChatWidget() {
   const [exchangeCount, setExchangeCount] = useState(0);
   const [isSending, setIsSending] = useState(false);
 
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const mobileMessagesEndRef = useRef<HTMLDivElement>(null);
+  const desktopMessagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -45,8 +46,11 @@ export default function ChatWidget() {
   }, [isOpen]);
 
   useEffect(() => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (mobileMessagesEndRef.current) {
+      mobileMessagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+    if (desktopMessagesEndRef.current) {
+      desktopMessagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
 
@@ -170,7 +174,7 @@ export default function ChatWidget() {
     handleSend(inputValue);
   };
 
-  const ChatWindow = (
+  const renderChatWindow = (endRef: React.RefObject<HTMLDivElement>) => (
     <>
       {/* Header */}
       <div className="bg-white/50 border-b border-gray-200 p-4 flex items-center justify-between">
@@ -230,7 +234,7 @@ export default function ChatWidget() {
             ))}
           </div>
         )}
-        <div ref={messagesEndRef} />
+        <div ref={endRef} />
       </div>
 
       {/* Input Area */}
@@ -285,7 +289,7 @@ export default function ChatWidget() {
             className="fixed z-[60] md:hidden top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-[28rem] bg-slate-50/95 backdrop-blur-2xl border border-gray-200 rounded-2xl shadow-[0_30px_100px_rgba(0,0,0,0.2)] pointer-events-auto overflow-hidden flex flex-col"
             style={{ maxHeight: "85vh" }}
           >
-            {ChatWindow}
+            {renderChatWindow(mobileMessagesEndRef)}
           </motion.div>
         )}
       </AnimatePresence>
@@ -307,7 +311,7 @@ export default function ChatWidget() {
               className="hidden md:flex absolute z-[60] bottom-[calc(100%+16px)] right-[-10px] md:right-0 md:left-auto md:translate-x-0 w-96 bg-slate-50/95 backdrop-blur-2xl border border-gray-200 rounded-2xl shadow-[0_30px_100px_rgba(0,0,0,0.2)] pointer-events-auto overflow-hidden flex flex-col cursor-default origin-bottom-right"
               style={{ maxHeight: "80vh" }}
             >
-              {ChatWindow}
+              {renderChatWindow(desktopMessagesEndRef)}
             </motion.div>
           )}
         </AnimatePresence>
