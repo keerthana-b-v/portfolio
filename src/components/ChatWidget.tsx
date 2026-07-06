@@ -193,7 +193,7 @@ export default function ChatWidget() {
       </div>
 
       {/* Chat Area */}
-      <div className="p-4 flex-1 overflow-y-auto overflow-x-hidden bg-transparent flex flex-col gap-4 max-h-[65vh] md:max-h-none md:h-[400px]">
+      <div className="p-4 flex-1 overflow-y-auto overflow-x-hidden chat-scroll bg-transparent flex flex-col gap-4 max-h-[65vh] md:max-h-none md:h-[550px]">
         <div className="flex gap-3">
           <div className="bg-black text-white p-2 rounded-full h-fit flex-shrink-0">
             <Bot size={16} />
@@ -312,7 +312,7 @@ export default function ChatWidget() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               className="hidden md:flex absolute z-[60] bottom-[calc(100%+16px)] right-[-10px] md:right-0 md:left-auto md:translate-x-0 bg-slate-50/95 backdrop-blur-2xl border border-gray-200 rounded-2xl shadow-[0_30px_100px_rgba(0,0,0,0.2)] pointer-events-auto overflow-hidden flex flex-col cursor-default origin-bottom-right"
-              style={{ maxHeight: "80vh", width: "450px", maxWidth: "95vw" }}
+              style={{ maxHeight: "80vh", width: "500px", maxWidth: "95vw" }}
             >
               {renderChatWindow(desktopMessagesEndRef)}
             </motion.div>
