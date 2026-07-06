@@ -93,27 +93,24 @@ export const ProjectCarousel = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="w-full max-w-6xl flex flex-col md:flex-row items-center gap-8 md:gap-12 bg-gray-50/40 p-6 md:p-10 rounded-[3rem] border border-gray-100 shadow-[0_20px_60px_rgba(0,0,0,0.05)] min-h-[500px]"
+          className="relative w-full max-w-6xl h-[500px] flex items-center justify-center"
         >
-          {/* Left Column: Image Container */}
-          <div className="w-full md:w-[50%] h-[320px] md:h-[420px] rounded-[2rem] overflow-hidden shadow-md relative bg-white flex items-center justify-center p-2">
-            <img 
-              src={currentProject.image} 
-              alt={currentProject.title} 
-              className="w-full h-full object-contain rounded-[1.5rem]" 
-            />
-          </div>
+          {/* Main Large Image */}
+          <div
+            className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-10 top-0 h-[450px] w-[95%] md:w-[70%] rounded-[2.5rem] bg-cover bg-center shadow-2xl"
+            style={{ backgroundImage: `url(${currentProject.image})` }}
+          />
 
-          {/* Right Column: Text & Content Card */}
-          <div className="w-full md:w-[50%] flex flex-col justify-between min-h-[380px] md:min-h-[420px]">
-            <div className="flex-1 overflow-y-auto pr-2 hide-scrollbar">
-              <h3 className="text-3xl font-extrabold text-gray-900 mb-2 leading-tight">
+          {/* Overlapping White Profile Card */}
+          <div className="absolute right-1/2 translate-x-1/2 md:translate-x-0 md:right-10 top-1/2 -translate-y-1/2 w-[90%] md:w-[45%] rounded-[2rem] bg-white/95 md:bg-white p-6 md:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.15)] border border-gray-100 flex flex-col justify-between min-h-[400px] backdrop-blur-sm md:backdrop-blur-none">
+            <div className="flex-1 overflow-y-auto pr-4 hide-scrollbar">
+              <h3 className="text-3xl font-extrabold text-gray-900 mb-3 leading-tight">
                 {currentProject.title}
               </h3>
-              <p className="text-sm font-bold text-blue-600 mb-4 tracking-widest uppercase">
+              <p className="text-sm font-bold text-blue-600 mb-5 tracking-widest uppercase">
                 {currentProject.role}
               </p>
-              <ul className="text-gray-600 text-sm leading-relaxed space-y-3 list-disc pl-5 font-medium">
+              <ul className="text-gray-600 text-sm leading-relaxed space-y-3 list-disc pl-5">
                 {currentProject.description.map((point, i) => (
                   <li key={i}>{point}</li>
                 ))}
@@ -121,9 +118,9 @@ export const ProjectCarousel = () => {
             </div>
 
             {/* Tech Stack Icons with Tooltips */}
-            <div className="flex flex-wrap items-center gap-3 mt-6 text-gray-800">
+            <div className="flex flex-wrap items-center gap-4 mt-8 text-gray-800">
               {currentProject.icons.map((item, idx) => (
-                <div key={idx} className="relative group p-2.5 bg-white rounded-full border border-gray-150 hover:scale-110 hover:bg-gray-50 hover:text-black transition-all cursor-pointer shadow-sm">
+                <div key={idx} className="relative group p-3 bg-gray-50 rounded-full border border-gray-200 hover:scale-110 hover:bg-gray-100 hover:text-black transition-all cursor-pointer">
                   {/* Tooltip */}
                   <span className="absolute -top-10 left-1/2 -translate-x-1/2 scale-0 transition-all rounded bg-gray-900 px-3 py-1.5 text-xs font-medium text-white group-hover:scale-100 shadow-md whitespace-nowrap z-10">
                     {item.label}
@@ -133,11 +130,11 @@ export const ProjectCarousel = () => {
               ))}
             </div>
             
-            {currentProject.link && (
-              <div className="mt-6 flex gap-4">
-                <a href={currentProject.link} target="_blank" rel="noopener noreferrer" className="text-xs font-bold tracking-wider text-black border-b-2 border-black hover:text-blue-600 hover:border-blue-600 transition-colors pb-1 uppercase">View Repository</a>
-              </div>
-            )}
+            <div className="mt-8 flex gap-4">
+              {currentProject.link && (
+                <a href={currentProject.link} target="_blank" rel="noopener noreferrer" className="text-sm font-bold tracking-wider text-black border-b-2 border-black hover:text-blue-600 hover:border-blue-600 transition-colors pb-1 uppercase">View Repository</a>
+              )}
+            </div>
           </div>
         </motion.div>
       </AnimatePresence>

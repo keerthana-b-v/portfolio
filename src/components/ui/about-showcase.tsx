@@ -47,7 +47,6 @@ export const AboutShowcase = () => {
               <p className="font-medium opacity-90 flex items-center gap-2 text-sm mt-1">
                 <MapPin size={14} /> Bengaluru, Karnataka
               </p>
-              <p className="text-xs opacity-70 mt-1 uppercase tracking-widest font-semibold">Open to remote & relocation</p>
             </div>
           </div>
         </div>
