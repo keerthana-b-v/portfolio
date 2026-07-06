@@ -37,7 +37,7 @@ export const AboutShowcase = () => {
           {/* Profile Image */}
           <div className="w-full h-[500px] rounded-[2.5rem] overflow-hidden shadow-2xl relative group">
             <img 
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop" 
+              src="/photo.jpeg" 
               alt="Keerthana B V" 
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
