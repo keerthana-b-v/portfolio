@@ -122,7 +122,7 @@ export default function ChatWidget() {
           answer += payload.content || "";
           
           if (answer.includes("[CTA_CONTACT]")) {
-            answer = answer.replace("[CTA_CONTACT]", "You can contact Keerthana at keerthana.b.v.codes@gmail.com");
+            answer = answer.replace("[CTA_CONTACT]", "You can contact Keerthana directly at keerthana.b.v.codes@gmail.com");
           }
 
           setMessages((prev) => {
@@ -193,7 +193,7 @@ export default function ChatWidget() {
       </div>
 
       {/* Chat Area */}
-      <div className="p-4 flex-1 overflow-y-auto bg-transparent flex flex-col gap-4 h-[65vh] md:h-[400px]">
+      <div className="p-4 flex-1 overflow-y-auto overflow-x-hidden bg-transparent flex flex-col gap-4 max-h-[65vh] md:max-h-none md:h-[400px]">
         <div className="flex gap-3">
           <div className="bg-black text-white p-2 rounded-full h-fit flex-shrink-0">
             <Bot size={16} />
@@ -210,7 +210,7 @@ export default function ChatWidget() {
                 <Bot size={16} />
               </div>
             )}
-            <div className={`text-[15px] p-3 rounded-2xl cursor-text ${
+            <div className={`text-[15px] p-3 rounded-2xl cursor-text break-words ${
               msg.sender === "user" 
                 ? "bg-black text-white rounded-tr-none" 
                 : "bg-gray-100 text-gray-800 rounded-tl-none"
