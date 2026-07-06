@@ -93,11 +93,11 @@ export const ProjectCarousel = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="relative w-full max-w-6xl h-[600px] flex items-center justify-center"
+          className="relative w-full max-w-6xl h-[500px] flex items-center justify-center"
         >
           {/* Main Large Image */}
           <div
-            className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-10 top-0 h-[550px] w-[95%] md:w-[70%] rounded-[2.5rem] bg-cover bg-center shadow-2xl"
+            className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-10 top-0 h-[450px] w-[95%] md:w-[70%] rounded-[2.5rem] bg-cover bg-center shadow-2xl"
             style={{ backgroundImage: `url(${currentProject.image})` }}
           />
 
@@ -142,13 +142,13 @@ export const ProjectCarousel = () => {
       {/* Carousel Controls (Left / Right Mid) */}
       <button
         onClick={handlePrev}
-        className="absolute left-0 top-[60%] -translate-y-1/2 p-4 rounded-full bg-white border border-gray-200 shadow-[0_10px_30px_rgba(0,0,0,0.1)] hover:bg-gray-50 hover:scale-110 transition-all z-20"
+        className="absolute left-0 top-[60%] -translate-y-1/2 p-4 rounded-full bg-white border border-gray-200 hover:bg-gray-50 hover:scale-110 transition-all z-20"
       >
         <ChevronLeft size={28} className="text-gray-700" />
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-0 top-[60%] -translate-y-1/2 p-4 rounded-full bg-white border border-gray-200 shadow-[0_10px_30px_rgba(0,0,0,0.1)] hover:bg-gray-50 hover:scale-110 transition-all z-20"
+        className="absolute right-0 top-[60%] -translate-y-1/2 p-4 rounded-full bg-white border border-gray-200 hover:bg-gray-50 hover:scale-110 transition-all z-20"
       >
         <ChevronRight size={28} className="text-gray-700" />
       </button>
