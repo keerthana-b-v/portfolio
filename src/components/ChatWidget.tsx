@@ -80,13 +80,17 @@ export default function ChatWidget() {
       }
     }, 1200);
 
-    const hideTimeout = setTimeout(() => {
-      setShowTooltip(false);
-    }, 5200);
+    let hideTimeout: NodeJS.Timeout;
+    // Only auto-hide on mobile view (width < 768px), keep it visible on desktop
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      hideTimeout = setTimeout(() => {
+        setShowTooltip(false);
+      }, 5200);
+    }
 
     return () => {
       clearTimeout(showTimeout);
-      clearTimeout(hideTimeout);
+      if (hideTimeout) clearTimeout(hideTimeout);
     };
   }, [isOpen]);
 

@@ -26,7 +26,7 @@ const projects: Project[] = [
       "Built a serverless pipeline in Make.com using custom webhooks to automatically extract structured call data and log it directly as new rows in Google Sheets.",
       "Integrated Twilio API to instantly send UPI payment links via SMS upon call ending, adding custom error-handling."
     ],
-    image: "/ai_voice_agent.png",
+    image: "/voice-bot.png",
     icons: [
       { icon: <FaRobot size={24} />, label: "Vapi AI" },
       { icon: <FaSms size={24} />, label: "Twilio API" },

@@ -31,7 +31,7 @@ const projects: Project[] = [
       { value: "Sheets", label: "DB" },
       { value: "Twilio", label: "SMS" }
     ],
-    image: "/ai_voice_agent.png",
+    image: "/voice-bot.png",
     icons: [
       { icon: <FaRobot size={16} />, label: "Vapi AI" },
       { icon: <FaDatabase size={16} />, label: "Google Sheets" },
