@@ -15,8 +15,8 @@ export const AboutShowcase = () => {
         
         {/* Left: Bio & Details */}
         <div className="flex-[1.5] flex flex-col gap-8 order-3 lg:order-1">
-          <div className="text-gray-700 leading-relaxed font-medium text-base lg:text-2xl xl:text-[26px] space-y-6 lg:space-y-8">
-            <h2 className="text-3xl lg:text-5xl xl:text-6xl font-black text-gray-900 tracking-tight mb-6 lg:mb-10 hidden lg:block">AI Agent Developer | Full-Stack Engineer</h2>
+          <div className="text-gray-700 leading-relaxed font-medium text-base lg:text-lg xl:text-xl space-y-4 lg:space-y-6">
+            <h2 className="text-3xl lg:text-3xl xl:text-4xl font-black text-gray-900 tracking-tight mb-4 lg:mb-6 hidden lg:block">AI Agent Developer | Full-Stack Engineer</h2>
             <p>
               I'm a <span className="font-bold text-gray-900">Full Stack Developer</span> based in Bengaluru. My work sits at the intersection of modern web engineering and <span className="font-bold text-gray-900">applied AI</span> — I design schemas, integrate models, configure servers, and ship UIs that real people use.
             </p>
