@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { MinimalistHero } from '@/components/ui/minimalist-hero';
+import { MorphingText } from '@/components/ui/morphing-text';
 import { AnimatePresence, motion } from 'framer-motion';
 import ChatWidget from '@/components/ChatWidget';
 import { AnimatedDock } from '@/components/ui/animated-dock';
@@ -64,25 +65,19 @@ export default function Home() {
         </header>
 
         {/* Core Headline & Subhead (Visible by Default) */}
-        <div className="text-center max-w-2xl px-6 flex flex-col items-center select-none">
-          <h1 className="text-3xl md:text-6xl font-black tracking-tight text-gray-900 mb-6 flex flex-col md:flex-row items-center gap-1 md:gap-3 leading-none">
-            <span>AI Agent Developer</span>
-            <span className="hidden md:inline text-gray-300 font-light">|</span>
-            <span className="text-gray-600 md:text-gray-900 font-bold">Full-Stack Engineer</span>
-          </h1>
-          <p className="text-sm md:text-lg text-gray-500 max-w-xl leading-relaxed font-medium mb-10">
+        <div className="text-center max-w-4xl px-6 flex flex-col items-center select-none w-full">
+          <MorphingText 
+            texts={[
+              "AI Agent Developer",
+              "Full-Stack Engineer",
+              "Keerthana B V"
+            ]} 
+            className="text-gray-900 tracking-tight font-black leading-none mb-10 md:mb-12"
+          />
+          <p className="text-sm md:text-lg text-gray-500 max-w-xl leading-relaxed font-medium mt-6">
             I build LLM agents and RAG systems — from a Legal-BERT model scoring 84.9% F1 to production chatbots — plus the full-stack apps that ship them.
           </p>
         </div>
-
-        <motion.button 
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => setActiveTab('PROJECTS')}
-          className="px-8 py-4 bg-black text-white text-sm font-bold tracking-widest uppercase rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_35px_rgba(0,0,0,0.25)] transition-all cursor-pointer border border-transparent hover:bg-gray-900"
-        >
-          View My Work →
-        </motion.button>
       </div>
     ),
     ABOUT: (
