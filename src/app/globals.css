@@ -17,13 +17,7 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-}
 
-@media (min-width: 768px) {
-  html {
-    font-size: 11.5px; /* Scales down the UI on desktop */
-  }
-}
 
 body {
   background-color: var(--background);

@@ -41,7 +41,7 @@ export const SkillsShowcase = () => {
          <p className="text-lg text-gray-500 font-medium leading-relaxed mt-2">Core tools I leverage to architect scalable web apps and secure AI workflows.</p>
       </div>
 
-      <div className="flex-1 overflow-y-auto pb-8 pr-2">
+      <div className="flex-1 overflow-y-scroll pb-8 pr-2">
         <div className="flex flex-col gap-4">
           {skillCategories.map((cat, idx) => (
             <div key={idx} className="bg-white rounded-2xl border border-gray-100 shadow-[0_5px_15px_rgba(0,0,0,0.02)] overflow-hidden">
