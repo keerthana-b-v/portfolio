@@ -15,8 +15,8 @@ export const ContactShowcase = () => {
   ];
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center p-6 bg-white overflow-y-auto">
-      <div className="w-full max-w-md bg-white rounded-3xl p-8 border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] text-center">
+    <div className="flex h-full w-full flex-col items-center py-12 md:py-0 p-6 bg-white overflow-y-auto">
+      <div className="w-full max-w-md bg-white rounded-3xl p-8 border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] text-center my-auto">
         <h2 className="text-3xl font-black text-gray-900 tracking-tight mb-2">Get in touch</h2>
         <p className="text-gray-500 text-sm font-medium mb-8">Connect with me on social media or reach out directly.</p>
         
