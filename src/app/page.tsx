@@ -72,9 +72,9 @@ export default function Home() {
               "Full-Stack Engineer",
               "Keerthana B V"
             ]} 
-            className="text-gray-900 tracking-tight font-black leading-none mb-10 md:mb-12"
+            className="text-gray-900 tracking-tight font-black leading-none mb-2 md:mb-12"
           />
-          <p className="text-sm md:text-lg text-gray-500 max-w-2xl leading-relaxed font-medium mt-12 md:mt-16">
+          <p className="text-[13px] md:text-lg text-gray-500 max-w-2xl leading-relaxed font-medium mt-6 md:mt-16">
             I build LLM agents and RAG systems — from a Legal-BERT model scoring 84.9% F1 to production chatbots — plus the full-stack apps that ship them.
           </p>
         </div>
