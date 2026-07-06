@@ -186,12 +186,12 @@ export default function ChatWidget() {
       </div>
 
       {/* Chat Area */}
-      <div className="p-4 flex-1 overflow-y-auto bg-transparent flex flex-col gap-4 min-h-[450px] max-h-[600px] md:min-h-[300px] md:max-h-[400px]">
+      <div className="p-4 flex-1 overflow-y-auto bg-transparent flex flex-col gap-4 h-[65vh] md:h-[400px]">
         <div className="flex gap-3">
           <div className="bg-black text-white p-2 rounded-full h-fit flex-shrink-0">
             <Bot size={16} />
           </div>
-          <div className="bg-gray-100 text-gray-800 text-lg p-3 rounded-2xl rounded-tl-none cursor-text">
+          <div className="bg-gray-100 text-gray-800 text-[15px] p-3 rounded-2xl rounded-tl-none cursor-text">
             Hi! I am Keerthana's AI assistant. Ask me anything about her projects, stack, or experience.
           </div>
         </div>
@@ -203,7 +203,7 @@ export default function ChatWidget() {
                 <Bot size={16} />
               </div>
             )}
-            <div className={`text-lg p-3 rounded-2xl cursor-text ${
+            <div className={`text-[15px] p-3 rounded-2xl cursor-text ${
               msg.sender === "user" 
                 ? "bg-black text-white rounded-tr-none" 
                 : "bg-gray-100 text-gray-800 rounded-tl-none"
@@ -243,7 +243,7 @@ export default function ChatWidget() {
             onChange={(e) => setInputValue(e.target.value)}
             disabled={exchangeCount >= 6 || isSending}
             placeholder={exchangeCount >= 6 ? "Limit reached." : "Ask a question..."}
-            className="w-full bg-gray-50 border border-gray-200 text-gray-800 text-lg rounded-full pl-4 pr-10 py-3 focus:outline-none focus:border-gray-400 transition-colors disabled:opacity-50 cursor-text"
+            className="w-full bg-gray-50 border border-gray-200 text-gray-800 text-[15px] rounded-full pl-4 pr-10 py-3 focus:outline-none focus:border-gray-400 transition-colors disabled:opacity-50 cursor-text"
             autoComplete="off"
           />
           <button
@@ -304,7 +304,7 @@ export default function ChatWidget() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="hidden md:flex absolute z-[60] bottom-[110%] right-[-10px] md:right-0 md:left-auto md:translate-x-0 w-96 bg-slate-50/95 backdrop-blur-2xl border border-gray-200 rounded-2xl shadow-[0_30px_100px_rgba(0,0,0,0.2)] pointer-events-auto overflow-hidden flex flex-col cursor-default origin-bottom-right"
+              className="hidden md:flex absolute z-[60] bottom-[calc(100%+16px)] right-[-10px] md:right-0 md:left-auto md:translate-x-0 w-96 bg-slate-50/95 backdrop-blur-2xl border border-gray-200 rounded-2xl shadow-[0_30px_100px_rgba(0,0,0,0.2)] pointer-events-auto overflow-hidden flex flex-col cursor-default origin-bottom-right"
               style={{ maxHeight: "80vh" }}
             >
               {ChatWindow}
