@@ -1,26 +1,305 @@
 @import "tailwindcss";
 
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #09090b;
+}
+
+/* Force light mode globally */
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #09090b;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  overscroll-behavior: none; /* Prevent rubber-band bounce on mobile */
+  touch-action: pan-x pan-y;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden; /* Prevent scrolling for the SPA feel */
+}
+
+/* Uiverse Hover Button (Home Page) */
+.uiverse-btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 18px;
+  background-image: linear-gradient(#facc15, #eab308); /* Yellow gradient */
+  color: #1a202c;
+  border: solid 2px #ca8a04;
+  height: 60px;
+  padding: 0px 24px;
+  border-radius: 8px;
+  font-weight: 800;
+  transform: scale(1.1);
+  position: relative;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.uiverse-btn:not(:hover) .u-hide,
+.uiverse-btn:not(:hover) .u-icon::before,
+.uiverse-btn:not(:hover) .u-icon::after {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.4);
+}
+.u-hide {
+  transition: all 0.4s ease;
+}
+.uiverse-btn:active {
+  background-image: linear-gradient(#eab308, #facc15);
+  border-color: #ca8a04;
+}
+.u-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.u-icon::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  transform: translate(-50%, -50%);
+  background-color: #000;
+  border-radius: 100%;
+}
+.u-icon::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform: translate(-19%, -60%);
+  width: 100px;
+  height: 33px;
+  background-color: transparent;
+  border-radius: 12px 22px 2px 2px;
+  border-right: solid 2px #000;
+  border-top: solid 2px transparent;
+}
+.u-icon .u-text-icon {
+  color: #000;
+  position: absolute;
+  font-size: 13px;
+  font-weight: 900;
+  left: -70px;
+  top: -42px;
+  white-space: nowrap;
+}
+.u-icon svg {
+  width: 24px;
+  height: 24px;
+  border: solid 2px transparent;
+  display: flex;
+}
+.uiverse-btn:hover .u-icon svg {
+  border: solid 2px rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+}
+.u-padding-left {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #000;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.u-padding-left:before {
+  content: "";
+  width: 2px;
+  height: 10px;
+  background-color: #000;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.u-padding-left:after {
+  content: "";
+  width: 2px;
+  height: 10px;
+  background-color: #000;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.u-padding-left-line {
+  position: absolute;
+  width: 40px;
+  height: 2px;
+  background-color: #000;
+  left: -34px;
+  top: 15px;
+  transform: rotate(-50deg);
+}
+.u-padding-left-line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  transform: translate(-50%, -50%);
+  background-color: #000;
+  border-radius: 100%;
+}
+.u-padding-left-text {
+  color: #000;
+  font-size: 13px;
+  font-weight: 900;
+  position: absolute;
+  white-space: nowrap;
+  transform: rotate(50deg);
+  bottom: 30px;
+  left: -75px;
+}
+
+.u-padding-right {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #000;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.u-padding-right:before {
+  content: "";
+  width: 2px;
+  height: 10px;
+  background-color: #000;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.u-padding-right:after {
+  content: "";
+  width: 2px;
+  height: 10px;
+  background-color: #000;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.u-padding-right-line {
+  position: absolute;
+  width: 40px;
+  height: 2px;
+  background-color: #000;
+  right: -34px;
+  top: 15px;
+  transform: rotate(50deg);
+}
+.u-padding-right-line::before {
+  content: "";
+  position: absolute;
+  left: 40px;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  transform: translate(-50%, -50%);
+  background-color: #000;
+  border-radius: 100%;
+}
+.u-padding-right-text {
+  color: #000;
+  font-size: 13px;
+  font-weight: 900;
+  position: absolute;
+  white-space: nowrap;
+  transform: rotate(-50deg);
+  bottom: 33px;
+  left: 20px;
+}
+.u-background {
+  position: absolute;
+}
+.u-background::before {
+  content: "";
+  position: absolute;
+  right: 27px;
+  bottom: -90px;
+  width: 100px;
+  height: 65px;
+  background-color: transparent;
+  border-radius: 0px 0px 22px 22px;
+  border-right: solid 2px #000;
+  border-bottom: solid 2px transparent;
+}
+.u-background::after {
+  content: "";
+  position: absolute;
+  right: 25px;
+  bottom: -25px;
+  width: 6px;
+  height: 6px;
+  background-color: #000;
+  border-radius: 100%;
+}
+.u-background-text {
+  position: absolute;
+  color: #000;
+  font-size: 13px;
+  font-weight: 900;
+  bottom: -100px;
+  left: -160px;
+  white-space: nowrap;
+}
+.u-border {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.u-border:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border: solid 2px #000;
+  position: absolute;
+  right: 0%;
+  top: 0;
+  transform: translate(50%, -50%);
+  border-radius: 100%;
+}
+.u-border:after {
+  content: "";
+  width: 2px;
+  height: 35px;
+  background-color: #000;
+  position: absolute;
+  right: -15px;
+  top: -25px;
+  transform: translate(50%, -50%) rotate(60deg);
+}
+.u-border .u-border-text {
+  position: absolute;
+  color: #000;
+  font-size: 13px;
+  font-weight: 900;
+  right: -50px;
+  top: -45px;
+  white-space: nowrap;
+}
+
+/* Hide scrollbar utility class */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
