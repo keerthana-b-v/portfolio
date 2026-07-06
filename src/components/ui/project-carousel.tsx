@@ -97,7 +97,7 @@ export const ProjectCarousel = () => {
         >
           {/* Main Large Image */}
           <div
-            className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-10 top-0 h-[450px] w-[95%] md:w-[70%] rounded-[2.5rem] bg-cover bg-center shadow-2xl"
+            className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-10 top-0 h-[450px] w-[95%] md:w-[70%] rounded-[2.5rem] bg-cover bg-left shadow-2xl"
             style={{ backgroundImage: `url(${currentProject.image})` }}
           />
 
