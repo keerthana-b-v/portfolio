@@ -335,7 +335,7 @@ export default function Home() {
           </p>
         </div>
 
-        <button className="uiverse-btn">
+        <button className="uiverse-btn mt-10 md:mt-16">
           <div className="u-icon">
             <span className="u-text-icon u-hide">Keerthana</span>
             <svg
@@ -355,19 +355,19 @@ export default function Home() {
           <span className="title ml-1">It's me</span>
           <div className="u-padding-left u-hide">
             <div className="u-padding-left-line">
-              <span className="u-padding-left-text">Full-Stack</span>
+              <span className="u-padding-left-text">Next.js & Node</span>
             </div>
           </div>
           <div className="u-padding-right u-hide">
             <div className="u-padding-right-line">
-              <span className="u-padding-right-text">Agent Dev</span>
+              <span className="u-padding-right-text">LangChain & Python</span>
             </div>
           </div>
           <div className="u-background u-hide">
-            <span className="u-background-text">Building LLM agents that ship</span>
+            <span className="u-background-text">8+ Deployed Apps</span>
           </div>
           <div className="u-border u-hide">
-            <span className="u-border-text">MCA</span>
+            <span className="u-border-text">MCA (RVITM)</span>
           </div>
         </button>
       </div>
