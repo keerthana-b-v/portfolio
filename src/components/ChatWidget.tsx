@@ -16,6 +16,51 @@ const SUGGESTIONS = [
   "Tell me about her AI experience",
 ];
 
+function formatMessageText(text: string) {
+  if (!text) return "";
+  const lines = text.split("\n");
+  return lines.map((line, lineIdx) => {
+    const isBullet = line.trim().startsWith("*") || line.trim().startsWith("-");
+    const cleanLine = isBullet ? line.trim().substring(1).trim() : line;
+    const regex = /(\*\*.*?\*\*|\[.*?\]\(.*?\))/g;
+    const parts = cleanLine.split(regex);
+    const renderedLine = parts.map((part, partIdx) => {
+      if (part.startsWith("**") && part.endsWith("**")) {
+        return <strong key={partIdx} className="font-bold text-gray-900">{part.slice(2, -2)}</strong>;
+      }
+      if (part.startsWith("[") && part.includes("](") && part.endsWith(")")) {
+        const labelEnd = part.indexOf("](");
+        const label = part.substring(1, labelEnd);
+        const url = part.substring(labelEnd + 2, part.length - 1);
+        return (
+          <a 
+            key={partIdx} 
+            href={url} 
+            target="_blank" 
+            className="text-blue-600 hover:underline font-semibold break-all"
+            rel="noopener noreferrer"
+          >
+            {label}
+          </a>
+        );
+      }
+      return part;
+    });
+    if (isBullet) {
+      return (
+        <li key={lineIdx} className="ml-4 list-disc my-1 leading-relaxed">
+          {renderedLine}
+        </li>
+      );
+    }
+    return (
+      <div key={lineIdx} className={lineIdx > 0 ? "mt-2 leading-relaxed" : "leading-relaxed"}>
+        {renderedLine}
+      </div>
+    );
+  });
+}
+
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
@@ -217,6 +262,8 @@ export default function ChatWidget() {
             }`}>
               {msg.text === "" && msg.sender === "assistant" && msg.isStreaming ? (
                 <span className="animate-pulse">Thinking...</span>
+              ) : msg.sender === "assistant" ? (
+                <div className="flex flex-col">{formatMessageText(msg.text)}</div>
               ) : (
                 msg.text
               )}
