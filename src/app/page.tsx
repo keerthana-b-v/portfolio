@@ -594,7 +594,7 @@ export default function Home() {
   };
 
   return (
-    <main className="fixed inset-0 w-full h-[100dvh] overflow-hidden bg-white origin-top md:scale-[1.02]">
+    <main className="fixed inset-0 w-full h-[100dvh] overflow-hidden bg-white origin-top">
       <AnimatePresence mode="wait">
         <motion.div
           key={activeTab}
