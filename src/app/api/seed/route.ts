@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { Pool } from 'pg';
 
 // Using edge runtime is not possible with pg, so this remains Node.js serverless
+// Triggering a redeployment to ensure environment variables are picked up by Vercel
 
 const chunks = [
   "Keerthana B V is a Full Stack Developer based in Bengaluru. She specializes in modern web engineering and applied AI.",
