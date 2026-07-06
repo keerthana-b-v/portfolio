@@ -303,7 +303,7 @@ export default function ChatWidget() {
         dragConstraints={{ top: -800, left: -1000, right: 0, bottom: 0 }} 
         dragElastic={0} 
         dragMomentum={false}
-        className={`fixed bottom-28 right-4 md:bottom-6 md:right-6 md:left-auto md:top-auto z-[9999] pointer-events-auto font-sans ${isOpen ? 'hidden md:block' : ''}`}
+        className={`fixed top-4 right-4 md:top-auto md:bottom-6 md:right-6 md:left-auto z-[9999] pointer-events-auto font-sans ${isOpen ? 'hidden md:block' : ''}`}
       >
         <AnimatePresence>
           {isOpen && (
