@@ -12,16 +12,23 @@
 }
 
 html, body {
-  overscroll-behavior: none; /* Prevent rubber-band bounce on mobile */
+  overscroll-behavior: none;
   touch-action: pan-x pan-y;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
+@media (min-width: 768px) {
+  html {
+    font-size: 13px; /* Scales down the UI on desktop */
+  }
+}
 
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-  overflow: hidden; /* Prevent scrolling for the SPA feel */
 }
 
 /* Uiverse Hover Button (Home Page) */
