@@ -16,6 +16,12 @@ html, body {
   touch-action: pan-x pan-y;
 }
 
+@media (min-width: 768px) {
+  html {
+    font-size: 13px; /* Scales down all Tailwind rem units (padding, text, margins) on desktop */
+  }
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
