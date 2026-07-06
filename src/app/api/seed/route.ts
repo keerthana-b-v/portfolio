@@ -19,7 +19,7 @@ const chunks = [
 
 async function getEmbedding(text: string, hfToken: string) {
   const response = await fetch(
-    "https://api-inference.huggingface.co/models/sentence-transformers/all-MiniLM-L6-v2",
+    "https://router.huggingface.co/hf-inference/models/sentence-transformers/all-MiniLM-L6-v2",
     {
       method: "POST",
       headers: {
@@ -31,7 +31,8 @@ async function getEmbedding(text: string, hfToken: string) {
   );
 
   if (!response.ok) {
-    throw new Error(`Hugging Face API failed: ${response.statusText}`);
+    const errText = await response.text().catch(() => "");
+    throw new Error(`Hugging Face API failed: ${response.status} ${response.statusText} - ${errText}`);
   }
 
   const result = await response.json();
