@@ -101,12 +101,12 @@ export const ProjectCarousel = () => {
           {/* Main Large Image */}
           <div
             onClick={() => setIsLightboxOpen(true)}
-            className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-10 top-0 h-[450px] w-[95%] md:w-[70%] rounded-[2.5rem] bg-cover bg-left shadow-2xl cursor-zoom-in hover:scale-[1.01] transition-transform duration-350 border border-gray-200/80"
+            className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-10 top-0 h-[450px] w-[95%] md:w-[70%] rounded-[2.5rem] bg-cover bg-left shadow-2xl cursor-zoom-in hover:scale-[1.01] transition-transform duration-350"
             style={{ backgroundImage: `url(${currentProject.image})` }}
           />
 
           {/* Overlapping White Profile Card */}
-          <div className="absolute right-1/2 translate-x-1/2 md:translate-x-0 md:right-10 top-1/2 -translate-y-1/2 w-[90%] md:w-[45%] rounded-[2rem] bg-white/95 md:bg-white p-6 md:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.15)] border border-gray-200 flex flex-col justify-between min-h-[400px] backdrop-blur-sm md:backdrop-blur-none">
+          <div className="absolute right-1/2 translate-x-1/2 md:translate-x-0 md:right-10 top-1/2 -translate-y-1/2 w-[90%] md:w-[45%] rounded-[2rem] bg-white/95 md:bg-white p-6 md:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.15)] border border-gray-100 flex flex-col justify-between min-h-[400px] backdrop-blur-sm md:backdrop-blur-none">
             <div className="flex-1 overflow-y-auto pr-4 hide-scrollbar">
               <h3 className="text-3xl font-extrabold text-gray-900 mb-3 leading-tight">
                 {currentProject.title}
