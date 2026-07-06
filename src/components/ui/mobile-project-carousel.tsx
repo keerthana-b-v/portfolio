@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ChevronLeft, ChevronRight, Github, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { SiPython, SiReact, SiMongodb, SiPytorch, SiHuggingface, SiJavascript, SiWebgl, SiLangchain, SiStreamlit } from "react-icons/si";
 import { FaDatabase, FaBrain, FaGithub, FaRobot } from "react-icons/fa";
 
