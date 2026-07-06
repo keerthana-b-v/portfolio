@@ -49,28 +49,34 @@ export const ResearchShowcase = () => {
         </div>
 
         {/* Right Metrics Area */}
-        <div className="w-full md:w-[350px] bg-gradient-to-br from-gray-900 to-black p-10 text-white flex flex-col justify-center">
-          <h3 className="text-xl font-bold mb-8 text-gray-200">Model Performance</h3>
-          
-          <div className="grid grid-cols-2 gap-y-10 gap-x-6">
-            <div>
-              <div className="text-4xl font-black text-emerald-400 mb-1">84.9%</div>
-              <div className="text-sm text-gray-400 font-medium uppercase tracking-wider">F1-Score</div>
-            </div>
+        <div 
+          className="w-full md:w-[350px] bg-cover bg-center relative p-10 text-white flex flex-col justify-center overflow-hidden"
+          style={{ backgroundImage: `url('/legal-research.png')` }}
+        >
+          <div className="absolute inset-0 bg-black/85 z-0" />
+          <div className="relative z-10 flex flex-col justify-center h-full">
+            <h3 className="text-xl font-bold mb-8 text-gray-200">Model Performance</h3>
             
-            <div>
-              <div className="text-4xl font-black text-blue-400 mb-1">84.7%</div>
-              <div className="text-sm text-gray-400 font-medium uppercase tracking-wider">Accuracy</div>
-            </div>
-            
-            <div>
-              <div className="text-4xl font-black text-purple-400 mb-1">510</div>
-              <div className="text-sm text-gray-400 font-medium uppercase tracking-wider">Contracts</div>
-            </div>
-            
-            <div>
-              <div className="text-4xl font-black text-yellow-400 mb-1">CUAD</div>
-              <div className="text-sm text-gray-400 font-medium uppercase tracking-wider">Benchmark</div>
+            <div className="grid grid-cols-2 gap-y-10 gap-x-6">
+              <div>
+                <div className="text-4xl font-black text-emerald-400 mb-1">84.9%</div>
+                <div className="text-sm text-gray-400 font-medium uppercase tracking-wider">F1-Score</div>
+              </div>
+              
+              <div>
+                <div className="text-4xl font-black text-blue-400 mb-1">84.7%</div>
+                <div className="text-sm text-gray-400 font-medium uppercase tracking-wider">Accuracy</div>
+              </div>
+              
+              <div>
+                <div className="text-4xl font-black text-purple-400 mb-1">510</div>
+                <div className="text-sm text-gray-400 font-medium uppercase tracking-wider">Contracts</div>
+              </div>
+              
+              <div>
+                <div className="text-4xl font-black text-yellow-400 mb-1">CUAD</div>
+                <div className="text-sm text-gray-400 font-medium uppercase tracking-wider">Benchmark</div>
+              </div>
             </div>
           </div>
         </div>

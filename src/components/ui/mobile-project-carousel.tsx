@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { SiPython, SiReact, SiMongodb, SiPytorch, SiHuggingface, SiJavascript, SiWebgl, SiLangchain, SiStreamlit } from "react-icons/si";
 import { FaDatabase, FaBrain, FaGithub, FaRobot } from "react-icons/fa";
 
@@ -85,13 +86,16 @@ const projects: Project[] = [
 
 export const MobileProjectCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+    setIsLightboxOpen(false);
   };
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+    setIsLightboxOpen(false);
   };
 
   const currentProject = projects[currentIndex];
@@ -122,7 +126,8 @@ export const MobileProjectCarousel = () => {
         <div className="w-full max-w-[320px] flex-1 min-h-0 flex flex-col bg-slate-50 border border-slate-300 rounded-[2rem] p-3 shadow-2xl relative">
         {/* Top Image Folder Tab Area */}
         <div 
-          className="w-full h-[150px] shrink-0 rounded-[1.5rem] rounded-tr-[4rem] p-5 flex flex-col justify-between relative overflow-hidden bg-cover bg-center"
+          onClick={() => setIsLightboxOpen(true)}
+          className="w-full h-[150px] shrink-0 rounded-[1.5rem] rounded-tr-[4rem] p-5 flex flex-col justify-between relative overflow-hidden bg-cover bg-center cursor-zoom-in"
           style={{ backgroundImage: `url(${currentProject.image})` }}
         >
           <div className="absolute inset-0 bg-black/40 z-0" />
@@ -189,6 +194,37 @@ export const MobileProjectCarousel = () => {
 
       </div>
 
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {isLightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsLightboxOpen(false)}
+            className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out"
+          >
+            <motion.div
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              className="relative max-w-full max-h-[80vh] w-full h-full flex items-center justify-center"
+            >
+              <img
+                src={currentProject.image}
+                alt={currentProject.title}
+                className="max-w-full max-h-full object-contain rounded-xl shadow-2xl border border-white/10"
+              />
+              <button
+                onClick={() => setIsLightboxOpen(false)}
+                className="absolute top-2 right-2 bg-white/20 hover:bg-white/40 text-white rounded-full p-2.5 transition-colors shadow-md active:scale-95"
+              >
+                <X size={20} />
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

@@ -7,12 +7,16 @@ export const MobileResearchShowcase = () => {
   return (
     <div className="flex flex-col h-full w-full px-6 overflow-hidden pt-4">
       <div className="flex-1 overflow-y-auto pb-8 hide-scrollbar">
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl shadow-xl border border-blue-100 overflow-hidden relative mb-6">
-          <div className="absolute top-0 right-0 p-4 bg-yellow-400 text-black font-black text-xs uppercase tracking-widest rounded-bl-3xl flex items-center gap-1 shadow-md">
-            <Trophy size={14} /> Best Paper
-          </div>
-          
-          <div className="p-6 pt-12">
+        <div 
+          className="bg-cover bg-center rounded-3xl shadow-xl border border-blue-100 overflow-hidden relative mb-6"
+          style={{ backgroundImage: `url('/legal-research.png')` }}
+        >
+          <div className="absolute inset-0 bg-white/92 backdrop-blur-[1px] z-0" />
+          <div className="relative z-10 p-6 pt-12">
+            <div className="absolute top-0 right-0 p-4 bg-yellow-400 text-black font-black text-xs uppercase tracking-widest rounded-bl-3xl flex items-center gap-1 shadow-md">
+              <Trophy size={14} /> Best Paper
+            </div>
+            
             <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Published Research</p>
             <h3 className="text-2xl font-extrabold text-gray-900 leading-tight mb-4 tracking-tight">AI Legal Document Analyser</h3>
             

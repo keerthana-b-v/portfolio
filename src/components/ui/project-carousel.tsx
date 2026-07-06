@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { SiPython, SiReact, SiMongodb, SiFastapi, SiHuggingface, SiPytorch, SiJavascript, SiWebgl, SiLangchain, SiStreamlit } from "react-icons/si";
 import { FaRobot, FaDatabase, FaSms, FaBrain } from "react-icons/fa";
 
@@ -73,13 +73,16 @@ const projects: Project[] = [
 
 export const ProjectCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+    setIsLightboxOpen(false);
   };
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+    setIsLightboxOpen(false);
   };
 
   const currentProject = projects[currentIndex];
@@ -97,7 +100,8 @@ export const ProjectCarousel = () => {
         >
           {/* Main Large Image */}
           <div
-            className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-10 top-0 h-[450px] w-[95%] md:w-[70%] rounded-[2.5rem] bg-cover bg-left shadow-2xl"
+            onClick={() => setIsLightboxOpen(true)}
+            className="absolute left-1/2 -translate-x-1/2 md:translate-x-0 md:left-10 top-0 h-[450px] w-[95%] md:w-[70%] rounded-[2.5rem] bg-cover bg-left shadow-2xl cursor-zoom-in hover:scale-[1.01] transition-transform duration-350"
             style={{ backgroundImage: `url(${currentProject.image})` }}
           />
 
@@ -152,6 +156,38 @@ export const ProjectCarousel = () => {
       >
         <ChevronRight size={28} className="text-gray-700" />
       </button>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {isLightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsLightboxOpen(false)}
+            className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8 cursor-zoom-out"
+          >
+            <motion.div
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              className="relative max-w-5xl max-h-[85vh] w-full h-full flex items-center justify-center"
+            >
+              <img
+                src={currentProject.image}
+                alt={currentProject.title}
+                className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl border border-white/10"
+              />
+              <button
+                onClick={() => setIsLightboxOpen(false)}
+                className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 text-white rounded-full p-3 transition-colors shadow-md hover:scale-105"
+              >
+                <X size={24} />
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
