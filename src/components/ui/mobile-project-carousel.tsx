@@ -131,13 +131,17 @@ export const MobileProjectCarousel = () => {
           style={{ backgroundImage: `url(${currentProject.image})` }}
         >
           <div className="absolute inset-0 bg-black/40 z-0" />
-          <div className="flex justify-between items-start z-10">
-            <div className="font-black text-2xl text-white tracking-widest border-b-2 border-white pb-1">UI</div>
-            <div className="flex gap-3 text-white">
-              {currentProject.link && (
-                <a href={currentProject.link} target="_blank" rel="noopener noreferrer" className="active:scale-95 transition-transform"><FaGithub size={20}/></a>
-              )}
-            </div>
+          <div className="flex justify-between items-start z-10 w-full">
+            {currentProject.link && (
+              <a 
+                href={currentProject.link} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="active:scale-95 transition-transform ml-auto mr-6 p-2 bg-black/50 backdrop-blur-md rounded-full border border-white/25 flex items-center justify-center shadow-lg"
+              >
+                <FaGithub size={20}/>
+              </a>
+            )}
           </div>
           
           <div className="z-10 mt-auto">
