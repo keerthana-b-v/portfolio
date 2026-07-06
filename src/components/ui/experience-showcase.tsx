@@ -6,7 +6,7 @@ import { ExternalLink, Briefcase, Server, ShieldCheck, Users } from "lucide-reac
 
 export const ExperienceShowcase = () => {
   return (
-    <div className="flex h-full w-full flex-col max-w-7xl mx-auto px-6 md:px-10 overflow-y-auto hide-scrollbar pb-8 justify-center">
+    <div className="flex h-full w-full flex-col max-w-7xl mx-auto px-6 md:px-10 overflow-hidden md:overflow-y-auto hide-scrollbar pb-8 justify-center">
       <div className="flex flex-col lg:flex-row gap-16 mt-4">
         
         {/* Left: Timeline & Role */}

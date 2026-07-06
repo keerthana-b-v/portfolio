@@ -8,10 +8,13 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 export const AboutShowcase = () => {
   return (
     <div className="flex h-full w-full flex-col max-w-7xl mx-auto px-6 md:px-10 overflow-y-auto pb-8 justify-center">
-      <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center justify-center mt-4">
+      <div className="block lg:hidden mb-6 mt-4 text-center">
+        <h2 className="text-4xl font-black text-gray-900 tracking-tight">About Me</h2>
+      </div>
+      <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center justify-center mt-2 lg:mt-4">
         
         {/* Left: Bio & Details */}
-        <div className="flex-[1.5] flex flex-col gap-8">
+        <div className="flex-[1.5] flex flex-col gap-8 order-3 lg:order-1">
           <div className="prose prose-xl text-gray-700 leading-relaxed font-medium">
             <p className="mb-6">
               I'm a Full Stack Developer based in Bengaluru. My work sits at the intersection of modern web engineering and applied AI — I design schemas, integrate models, configure servers, and ship UIs that real people use.
@@ -29,7 +32,7 @@ export const AboutShowcase = () => {
         </div>
 
         {/* Right: Profile Image */}
-        <div className="flex-1 flex flex-col gap-10 w-full max-w-lg">
+        <div className="flex-1 flex flex-col gap-10 w-full max-w-lg order-2 lg:order-2">
           {/* Profile Image */}
           <div className="w-full h-[500px] rounded-[2.5rem] overflow-hidden shadow-2xl relative group">
             <img 
