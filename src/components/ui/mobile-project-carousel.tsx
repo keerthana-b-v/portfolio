@@ -20,7 +20,7 @@ const projects: Project[] = [
   {
     id: 1,
     title: "AI Voice Agent",
-    role: "Voice AI Automation",
+    role: "AI Integration Engineer",
     description: [
       "Deployed a multilingual conversational voice agent (English/Tanglish) using Vapi AI and OpenAI GPT-4o-Mini to automate customer order intake and L1 FAQs.",
       "Built a serverless pipeline in Make.com using custom webhooks to automatically extract structured call data and log it directly as new rows in Google Sheets.",
@@ -31,7 +31,7 @@ const projects: Project[] = [
       { value: "Sheets", label: "DB" },
       { value: "Twilio", label: "SMS" }
     ],
-    image: "/voice-bot.png",
+    image: "/ai_voice_agent.png",
     icons: [
       { icon: <FaRobot size={16} />, label: "Vapi AI" },
       { icon: <FaDatabase size={16} />, label: "Google Sheets" },
@@ -41,7 +41,7 @@ const projects: Project[] = [
   {
     id: 2,
     title: "AI Legal Doc Intelligence",
-    role: "Applied NLP & Fine-Tuning",
+    role: "Lead Full Stack AI Engineer",
     description: [
       "Fine-tuned Legal-BERT using LoRA for parameter-efficient training, achieving 84.9% F1-score and 84.7% accuracy on the 510-contract CUAD benchmark in ~3 hours.",
       "Engineered a data pipeline using Pandas and Hugging Face Datasets to parse character-span annotations across long-form contracts.",
@@ -63,7 +63,7 @@ const projects: Project[] = [
   {
     id: 3,
     title: "E-Com Support Agent",
-    role: "RAG & Agent Workflows",
+    role: "AI Developer",
     description: [
       "Built a production-grade AI Agent with FastAPI and React; implemented a RAG pipeline utilizing FAISS vector search and recursive chunking.",
       "Validated retrieval accuracy and system safety through a structured manual evaluation suite covering in-scope queries and boundary edge cases.",
