@@ -21,7 +21,7 @@ html, body {
 
 @media (min-width: 768px) {
   html {
-    font-size: 13px; /* Scales down the UI on desktop */
+    font-size: 11.5px; /* Scales down the UI on desktop */
   }
 }
 
