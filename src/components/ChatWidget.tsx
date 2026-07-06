@@ -218,7 +218,7 @@ export default function ChatWidget() {
               </div>
 
               {/* Chat Area */}
-              <div className="p-4 flex-1 overflow-y-auto bg-transparent flex flex-col gap-4" style={{ minHeight: "450px", maxHeight: "600px" }}>
+              <div className="p-4 flex-1 overflow-y-auto bg-transparent flex flex-col gap-4 min-h-[450px] max-h-[600px] md:min-h-[300px] md:max-h-[400px]">
                 <div className="flex gap-3">
                   <div className="bg-black text-white p-2 rounded-full h-fit flex-shrink-0">
                     <Bot size={16} />
