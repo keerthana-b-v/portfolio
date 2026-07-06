@@ -96,9 +96,7 @@ export async function GET() {
     await pool.query('TRUNCATE TABLE kb_chunks;');
 
     // 3. Seed data
-    let insertedCount = 0;
-    for (let i = 0; i < chunks.length; i++) {
-      const chunk = chunks[i];
+    const insertPromises = chunks.map(async (chunk, i) => {
       const embedding = await getEmbedding(chunk, HF_TOKEN);
       const vectorSql = `[${embedding.join(",")}]`;
       
@@ -106,11 +104,10 @@ export async function GET() {
         `INSERT INTO kb_chunks (content, metadata, embedding) VALUES ($1, $2, $3::vector)`,
         [chunk, JSON.stringify({ source: "portfolio", index: i }), vectorSql]
       );
-      insertedCount++;
-      
-      // Delay to respect HF free tier rate limits
-      await new Promise(resolve => setTimeout(resolve, 1000));
-    }
+    });
+
+    await Promise.all(insertPromises);
+    const insertedCount = chunks.length;
 
     return NextResponse.json({ 
       success: true, 
