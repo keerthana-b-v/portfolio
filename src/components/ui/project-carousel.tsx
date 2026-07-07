@@ -13,7 +13,6 @@ interface Project {
   description: string[];
   image: string;
   link?: string;
-  linkText?: string;
   icons: { icon: React.ReactNode; label: string }[];
 }
 
@@ -63,8 +62,6 @@ const projects: Project[] = [
       "Engineered double-layer prompt injection defenses (100% block rate) and stateful auto-escalation ticket logging."
     ],
     image: "/chatbot.png",
-    link: "/portfolio/chatbot-case-study",
-    linkText: "Read Case Study ➜",
     icons: [
       { icon: <SiFastapi size={24} />, label: "FastAPI" },
       { icon: <SiReact size={24} />, label: "React" },
@@ -139,7 +136,7 @@ export const ProjectCarousel = () => {
             
             <div className="mt-8 flex gap-4">
               {currentProject.link && (
-                <a href={currentProject.link} target={currentProject.link.startsWith('/') ? '_self' : '_blank'} rel="noopener noreferrer" className="text-sm font-bold tracking-wider text-black border-b-2 border-black hover:text-blue-600 hover:border-blue-600 transition-colors pb-1 uppercase">{currentProject.linkText || 'View Repository'}</a>
+                <a href={currentProject.link} target="_blank" rel="noopener noreferrer" className="text-sm font-bold tracking-wider text-black border-b-2 border-black hover:text-blue-600 hover:border-blue-600 transition-colors pb-1 uppercase">View Repository</a>
               )}
             </div>
           </div>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Phone, Mail, MapPin, Bot, MessageSquare, Zap, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, Bot, MessageSquare, Zap, ShieldCheck } from 'lucide-react';
 
 export default function ChatbotCaseStudy() {
   return (
@@ -145,15 +145,6 @@ export default function ChatbotCaseStudy() {
                   By abandoning heavy generic frameworks in favor of a lean, custom-engineered RAG pipeline, this agent achieved 100% security against prompt injection and top-tier relevancy metrics, all while running safely within strict 512MB memory constraints.
                 </p>
               </fieldset>
-            </div>
-
-            {/* Contact Card */}
-            <div className="mt-12 bg-white border border-slate-200 p-5 rounded-xl shadow-sm">
-              <ul className="space-y-3 text-sm font-bold text-slate-700">
-                <li className="flex items-center gap-3"><Phone size={16} className="text-orange-500"/> +91 9901724479</li>
-                <li className="flex items-center gap-3"><Mail size={16} className="text-orange-500"/> keerthana.b.v.codes@gmail.com</li>
-                <li className="flex items-center gap-3"><MapPin size={16} className="text-orange-500"/> Bengaluru, Karnataka</li>
-              </ul>
             </div>
             
           </div>

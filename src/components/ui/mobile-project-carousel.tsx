@@ -75,7 +75,6 @@ const projects: Project[] = [
       { value: "React", label: "UI" },
       { value: "LangChain", label: "LLM" }
     ],
-    link: "/portfolio/chatbot-case-study",
     image: "/chatbot.png",
     icons: [
       { icon: <SiFastapi size={16} />, label: "FastAPI" },
