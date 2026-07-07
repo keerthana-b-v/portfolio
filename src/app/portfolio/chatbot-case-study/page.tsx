@@ -6,9 +6,9 @@ import { ArrowLeft, Phone, Mail, MapPin, Bot, MessageSquare, Zap, ShieldCheck } 
 
 export default function ChatbotCaseStudy() {
   return (
-    <div className="min-h-screen bg-slate-200 py-12 px-4 font-sans text-slate-900 selection:bg-orange-200">
+    <main className="flex-1 w-full overflow-y-auto bg-slate-200 py-12 md:py-24 px-4 sm:px-6 font-sans text-slate-900 selection:bg-orange-200 flex flex-col items-center">
       
-      <div className="mx-auto w-full max-w-[1000px] bg-white shadow-2xl rounded-2xl overflow-hidden relative">
+      <div className="w-full max-w-6xl bg-white shadow-2xl rounded-2xl overflow-hidden relative mt-4 mb-24 shrink-0">
         
         {/* Back Button */}
         <Link 
@@ -161,7 +161,7 @@ export default function ChatbotCaseStudy() {
         </div>
 
       </div>
-    </div>
+    </main>
   );
 }
 
