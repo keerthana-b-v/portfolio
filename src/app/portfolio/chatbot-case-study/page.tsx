@@ -6,9 +6,9 @@ import { ArrowLeft, Phone, Mail, MapPin, Bot, MessageSquare, Zap, ShieldCheck } 
 
 export default function ChatbotCaseStudy() {
   return (
-    <div className="min-h-screen bg-slate-200 py-12 px-4 font-sans text-slate-900 flex justify-center selection:bg-orange-200">
+    <div className="min-h-screen bg-slate-200 py-12 px-4 font-sans text-slate-900 selection:bg-orange-200">
       
-      <div className="w-full max-w-[1000px] bg-white shadow-2xl rounded-2xl overflow-hidden relative">
+      <div className="mx-auto w-full max-w-[1000px] bg-white shadow-2xl rounded-2xl overflow-hidden relative">
         
         {/* Back Button */}
         <Link 
@@ -27,7 +27,7 @@ export default function ChatbotCaseStudy() {
               <span className="font-medium text-slate-400">Bengaluru, India</span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 leading-[1.1] mb-4 uppercase">
+            <h1 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900 leading-snug mb-4 uppercase">
               <span className="block text-slate-400 font-light mb-1">AI Support</span>
               <span className="block">Case Study</span>
             </h1>
