@@ -521,6 +521,19 @@ export function useVoiceChat(options: UseVoiceChatOptions = {}): UseVoiceChatRes
         }
         isRecognitionActiveRef.current = false;
       }
+      sessionActiveRef.current = true;
+      // speechSynthesis.cancel() requests silence but isn't guaranteed
+      // instantaneous — there can be a brief acoustic tail while the audio
+      // hardware actually stops. Arming the mic in the same tick risks it
+      // picking up that tail as the user's own voice, producing a garbled
+      // 1-2-word "final" result before the user has actually said anything,
+      // which then gets sent to the model as if it were the real question.
+      // A short delay lets playback genuinely stop first.
+      window.setTimeout(() => {
+        if (!mountedRef.current || !sessionActiveRef.current) return;
+        beginListening();
+      }, 250);
+      return;
     }
     sessionActiveRef.current = true;
     beginListening();
