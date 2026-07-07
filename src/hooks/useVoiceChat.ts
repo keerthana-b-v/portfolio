@@ -506,6 +506,21 @@ export function useVoiceChat(options: UseVoiceChatOptions = {}): UseVoiceChatRes
       speechQueueRef.current = [];
       streamFinishedRef.current = false;
       currentUtteranceRef.current = null;
+      // Defensive reset: isRecognitionActiveRef only clears in the
+      // recognizer's onend handler. If that event ever fails to fire (a
+      // known browser quirk), the ref stays stuck "true" forever and
+      // beginListening() below would silently no-op — the mic would look
+      // tappable but do nothing, with zero visible error. Force it clear
+      // here so a barge-in tap can never be silently swallowed.
+      if (isRecognitionActiveRef.current) {
+        intentionalStopRef.current = true;
+        try {
+          recognitionRef.current?.abort();
+        } catch {
+          // already stopped; nothing to clean up
+        }
+        isRecognitionActiveRef.current = false;
+      }
     }
     sessionActiveRef.current = true;
     beginListening();

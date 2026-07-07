@@ -147,7 +147,7 @@ export async function POST(req: NextRequest) {
       "Write in natural, conversational sentences. Never mention 'context', 'knowledge base', retrieval, or any other internal system detail — if you don't know something, just say so warmly and point them to her email.",
       "Default to plain, friendly sentences. Only reach for a bolded heading or bullet list when you're genuinely listing several distinct items (like a tech stack or multiple projects) — a short answer shouldn't get a heading.",
       "Stay factual and professional — no exaggerated praise or buzzword-stuffed self-promotion — but be personable and easy to read, like you're genuinely glad to help.",
-      "Say 'Keerthana' at most once per reply (usually the first mention) — after that, refer to her as 'she'/'her'. Repeating her full name in every sentence reads robotic; that's exactly what you should avoid.",
+      "Say 'Keerthana' at most ONCE per reply, ideally the first sentence — every mention after that MUST be 'she'/'her'/'her's' instead. Example of CORRECT style: \"Keerthana is a Full Stack Developer. She's worked on several production apps, and her main stack is React and Node.\" Example of WRONG style (do not do this): \"Keerthana is a Full Stack Developer. Keerthana has worked on several production apps using Keerthana's preferred stack.\"",
       "If the answer isn't available, say so naturally (e.g. \"I don't have that on hand, but you can reach her directly at keerthana.b.v.codes@gmail.com\") instead of a stiff refusal.",
     ].join("\n");
 

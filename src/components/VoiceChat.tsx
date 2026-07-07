@@ -20,7 +20,7 @@ const STATUS_LABEL: Record<string, string> = {
   idle: "Tap to talk",
   listening: "Listening…",
   processing: "Thinking…",
-  speaking: "Speaking…",
+  speaking: "Speaking — tap mic to interrupt",
 };
 
 export default function VoiceChat({ onExchange, disabled, endpoint }: VoiceChatProps) {
@@ -60,7 +60,7 @@ export default function VoiceChat({ onExchange, disabled, endpoint }: VoiceChatP
           status === "listening"
             ? "bg-red-500 text-white animate-pulse"
             : status === "speaking"
-              ? "bg-blue-500 text-white"
+              ? "bg-blue-500 text-white hover:bg-blue-600 cursor-pointer animate-pulse"
               : status === "processing"
                 ? "bg-gray-300 text-gray-600"
                 : "bg-black text-white hover:bg-gray-800"
@@ -87,7 +87,7 @@ export default function VoiceChat({ onExchange, disabled, endpoint }: VoiceChatP
       )}
 
       {isActive && (
-        <span className="text-xs text-gray-500 truncate max-w-[120px]">
+        <span className="text-xs text-gray-500 truncate max-w-[180px]">
           {status === "listening" && transcript ? transcript : STATUS_LABEL[status]}
         </span>
       )}
