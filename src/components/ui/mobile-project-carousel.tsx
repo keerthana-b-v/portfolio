@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { SiPython, SiReact, SiMongodb, SiPytorch, SiHuggingface, SiJavascript, SiWebgl, SiLangchain, SiStreamlit } from "react-icons/si";
+import { SiPython, SiReact, SiMongodb, SiPytorch, SiHuggingface, SiJavascript, SiWebgl, SiLangchain, SiStreamlit, SiFastapi } from "react-icons/si";
 import { FaDatabase, FaBrain, FaGithub, FaRobot } from "react-icons/fa";
 
 interface Project {
@@ -63,23 +63,24 @@ const projects: Project[] = [
   },
   {
     id: 3,
-    title: "E-Com Support Agent",
+    title: "E-Commerce AI Support Agent (Flagship Project)",
     role: "AI Developer",
     description: [
-      "Built a production-grade AI Agent with FastAPI and React; implemented a RAG pipeline utilizing FAISS vector search and recursive chunking.",
-      "Validated retrieval accuracy and system safety through a structured manual evaluation suite covering in-scope queries and boundary edge cases.",
-      "Developed simulated enterprise features including CRM context injection into the LLM prompt and an automated ticketing system for human escalation."
+      "Developed a full-stack e-commerce RAG agent serving streaming responses via Server-Sent Events (SSE).",
+      "Optimized memory footprint by 90% (to <100MB) using custom-tokenized BM25 keyword index to prevent cloud container crashes.",
+      "Engineered double-layer prompt injection defenses (100% block rate) and stateful auto-escalation ticket logging."
     ],
     stats: [
-      { value: "FAISS", label: "Vector" },
-      { value: "RAG", label: "Pipe" },
-      { value: "Auto", label: "Hand" }
+      { value: "FastAPI", label: "API" },
+      { value: "React", label: "UI" },
+      { value: "LangChain", label: "LLM" }
     ],
+    link: "/portfolio/chatbot-case-study",
     image: "/chatbot.png",
     icons: [
-      { icon: <SiPython size={16} />, label: "Python" },
-      { icon: <SiLangchain size={16} />, label: "LangChain" },
-      { icon: <FaDatabase size={16} />, label: "FAISS" }
+      { icon: <SiFastapi size={16} />, label: "FastAPI" },
+      { icon: <SiReact size={16} />, label: "React" },
+      { icon: <FaDatabase size={16} />, label: "SQLite" }
     ],
   },
 ];
