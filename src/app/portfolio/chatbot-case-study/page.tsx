@@ -19,15 +19,15 @@ export default function ChatbotCaseStudy() {
         </Link>
 
         {/* Top Half (White Background) */}
-        <div className="px-12 md:px-20 pt-16 pb-10 flex flex-col md:flex-row items-center justify-between gap-12">
+        <div className="px-6 md:px-20 pt-16 pb-10 flex flex-col md:flex-row items-center justify-between gap-12">
           
-          <div className="md:w-1/2">
-            <div className="text-xs font-bold tracking-widest uppercase text-slate-500 mb-6">
+          <div className="w-full md:w-1/2">
+            <div className="text-[10px] md:text-xs font-bold tracking-widest uppercase text-slate-500 mb-6">
               E-Commerce Flagship Project<br/>
               <span className="font-medium text-slate-400">Bengaluru, India</span>
             </div>
             
-            <h1 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900 leading-snug mb-4 uppercase">
+            <h1 className="text-2xl md:text-4xl font-black tracking-tight text-slate-900 leading-snug mb-4 uppercase">
               <span className="block text-slate-400 font-light mb-1">AI Support</span>
               <span className="block">Case Study</span>
             </h1>
@@ -49,7 +49,7 @@ export default function ChatbotCaseStudy() {
         </div>
 
         {/* Bottom Half (Light Gray Background) */}
-        <div className="bg-slate-100 px-12 md:px-20 py-16 grid grid-cols-1 md:grid-cols-12 gap-12 border-t border-slate-200">
+        <div className="bg-slate-100 px-6 md:px-20 py-16 grid grid-cols-1 md:grid-cols-12 gap-12 border-t border-slate-200">
           
           {/* Left Column */}
           <div className="md:col-span-7 space-y-12">
