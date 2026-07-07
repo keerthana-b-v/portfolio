@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef, FormEvent } from "react";
 import { Bot, X, Send } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import VoiceChat from "@/components/VoiceChat";
+import type { VoiceExchange } from "@/hooks/useVoiceChat";
 
 interface Message {
   text: string;
@@ -20,8 +22,17 @@ function formatMessageText(text: string) {
   if (!text) return "";
   const lines = text.split("\n");
   return lines.map((line, lineIdx) => {
-    const isBullet = line.trim().startsWith("*") || line.trim().startsWith("-");
-    const cleanLine = isBullet ? line.trim().substring(1).trim() : line;
+    const trimmed = line.trim();
+    const headingMatch = trimmed.match(/^(#{1,6})\s+(.*)$/);
+    const isBullet = /^[*+-]\s+/.test(trimmed);
+
+    let cleanLine = line;
+    if (headingMatch) {
+      cleanLine = headingMatch[2];
+    } else if (isBullet) {
+      cleanLine = trimmed.replace(/^[*+-]\s+/, "");
+    }
+
     const regex = /(\*\*.*?\*\*|\[.*?\]\(.*?\))/g;
     const parts = cleanLine.split(regex);
     const renderedLine = parts.map((part, partIdx) => {
@@ -33,10 +44,10 @@ function formatMessageText(text: string) {
         const label = part.substring(1, labelEnd);
         const url = part.substring(labelEnd + 2, part.length - 1);
         return (
-          <a 
-            key={partIdx} 
-            href={url} 
-            target="_blank" 
+          <a
+            key={partIdx}
+            href={url}
+            target="_blank"
             className="text-blue-600 hover:underline font-semibold break-all"
             rel="noopener noreferrer"
           >
@@ -46,6 +57,13 @@ function formatMessageText(text: string) {
       }
       return part;
     });
+    if (headingMatch) {
+      return (
+        <div key={lineIdx} className="font-semibold text-gray-900 mt-2 first:mt-0">
+          {renderedLine}
+        </div>
+      );
+    }
     if (isBullet) {
       return (
         <li key={lineIdx} className="ml-4 list-disc my-1 leading-relaxed">
@@ -127,6 +145,8 @@ export default function ChatWidget() {
     const assistantMsgPlaceholder: Message = { text: "", sender: "assistant", isStreaming: true };
     setMessages((prev) => [...prev, assistantMsgPlaceholder]);
 
+    const historyToSend = [...messages, userMsg];
+
     const isLocal = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost";
     const API_URL = isLocal 
       ? (process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api/chat") 
@@ -136,7 +156,7 @@ export default function ChatWidget() {
       const response = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed }),
+        body: JSON.stringify({ message: trimmed, history: historyToSend, source: "text" }),
       });
 
       if (!response.ok || !response.body) {
@@ -226,6 +246,21 @@ export default function ChatWidget() {
     handleSend(inputValue);
   };
 
+  // Voice mode reuses this SAME message list rather than keeping its own
+  // separate transcript — VoiceChat only reports a turn once it's fully
+  // finished (not chunk-by-chunk), so this append can't race with the
+  // index-based "update the last message" logic handleSend uses for
+  // streaming text replies.
+  const handleVoiceExchange = ({ user, assistant }: VoiceExchange) => {
+    if (exchangeCount >= 6) return;
+    setMessages((prev) => [
+      ...prev,
+      { text: user, sender: "user" },
+      { text: assistant, sender: "assistant" },
+    ]);
+    setExchangeCount((prev) => prev + 1);
+  };
+
   const renderChatWindow = (endRef: React.RefObject<HTMLDivElement | null>) => (
     <>
       {/* Header */}
@@ -293,24 +328,27 @@ export default function ChatWidget() {
 
       {/* Input Area */}
       <form onSubmit={handleSubmit} className="p-3 border-t border-gray-200 bg-white/50 cursor-default">
-        <div className="relative">
-          <input
-            type="text"
-            ref={inputRef}
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            disabled={exchangeCount >= 6 || isSending}
-            placeholder={exchangeCount >= 6 ? "Limit reached." : "Ask a question..."}
-            className="w-full bg-gray-50 border border-gray-200 text-gray-800 text-[15px] rounded-full pl-4 pr-10 py-3 focus:outline-none focus:border-gray-400 transition-colors disabled:opacity-50 cursor-text"
-            autoComplete="off"
-          />
-          <button
-            type="submit"
-            disabled={!inputValue.trim() || exchangeCount >= 6 || isSending}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-black text-white rounded-full disabled:opacity-50 transition-opacity"
-          >
-            <Send size={14} />
-          </button>
+        <div className="flex items-center gap-2">
+          <VoiceChat disabled={exchangeCount >= 6 || isSending} onExchange={handleVoiceExchange} />
+          <div className="relative flex-1">
+            <input
+              type="text"
+              ref={inputRef}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              disabled={exchangeCount >= 6 || isSending}
+              placeholder={exchangeCount >= 6 ? "Limit reached." : "Ask a question..."}
+              className="w-full bg-gray-50 border border-gray-200 text-gray-800 text-[15px] rounded-full pl-4 pr-10 py-3 focus:outline-none focus:border-gray-400 transition-colors disabled:opacity-50 cursor-text"
+              autoComplete="off"
+            />
+            <button
+              type="submit"
+              disabled={!inputValue.trim() || exchangeCount >= 6 || isSending}
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-black text-white rounded-full disabled:opacity-50 transition-opacity"
+            >
+              <Send size={14} />
+            </button>
+          </div>
         </div>
       </form>
     </>

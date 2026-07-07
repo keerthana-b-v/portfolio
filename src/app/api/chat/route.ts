@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { Pool } from "pg";
 import Groq from "groq-sdk";
 
@@ -30,6 +30,28 @@ function checkRateLimit(ip: string): boolean {
   }
   record.count++;
   return true;
+}
+
+// Fire-and-forget conversation logging so voice/text turns can be reviewed
+// later to spot retrieval gaps, STT truncation, or prompt drift — a failure
+// here must never break the actual chat response.
+async function logChatTurn(entry: {
+  source: "text" | "voice";
+  ip: string;
+  userMessage: string;
+  assistantResponse: string;
+  retrievalSucceeded: boolean;
+  matchedChunks: number;
+}) {
+  try {
+    await pool.query(
+      `INSERT INTO chat_logs (source, ip, user_message, assistant_response, retrieval_succeeded, matched_chunks)
+       VALUES ($1, $2, $3, $4, $5, $6)`,
+      [entry.source, entry.ip, entry.userMessage, entry.assistantResponse, entry.retrievalSucceeded, entry.matchedChunks]
+    );
+  } catch (e: unknown) {
+    console.warn("Failed to write chat_logs entry:", e instanceof Error ? e.message : e);
+  }
 }
 
 async function getEmbedding(text: string, signal: AbortSignal): Promise<number[]> {
@@ -68,10 +90,11 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { message } = await req.json();
+    const { message, source: rawSource } = await req.json();
     if (!message) {
       return new NextResponse("Message required", { status: 400 });
     }
+    const source: "text" | "voice" = rawSource === "voice" ? "voice" : "text";
 
     const signal = req.signal;
 
@@ -87,6 +110,7 @@ export async function POST(req: NextRequest) {
 
     let context = "";
     let retrievalSucceeded = false;
+    let matchedChunks = 0;
 
     if (!embeddingFailed && queryVector.length > 0) {
       const vectorSql = `[${queryVector.join(",")}]`;
@@ -99,30 +123,32 @@ export async function POST(req: NextRequest) {
         );
         
         if (rows.length === 0) {
-          return createDirectStreamResponse(
-            "I couldn't find specific information about that in my knowledge base. Please feel free to contact Keerthana directly at keerthana.b.v.codes@gmail.com for more details."
-          );
+          const fallback = "I don't have specific details on that one yet — feel free to reach out to Keerthana directly at keerthana.b.v.codes@gmail.com, she'd be happy to fill you in.";
+          after(() => logChatTurn({ source, ip, userMessage: message, assistantResponse: fallback, retrievalSucceeded: false, matchedChunks: 0 }));
+          return createDirectStreamResponse(fallback);
         }
 
         context = rows.map((c: any, i: number) => `[#${i + 1}] ${c.content}`).join("\n\n");
         retrievalSucceeded = true;
+        matchedChunks = rows.length;
       } catch (dbError: any) {
         console.warn("Database query failed, proceeding without context:", dbError.message);
       }
     }
 
     if (!retrievalSucceeded && embeddingFailed) {
-       return createDirectStreamResponse(
-         "I'm currently experiencing a connection issue with my knowledge base API. Please contact Keerthana directly at keerthana.b.v.codes@gmail.com in the meantime."
-       );
+       const fallback = "I'm having a little trouble pulling that up right now. Please reach out to Keerthana directly at keerthana.b.v.codes@gmail.com in the meantime.";
+       after(() => logChatTurn({ source, ip, userMessage: message, assistantResponse: fallback, retrievalSucceeded: false, matchedChunks: 0 }));
+       return createDirectStreamResponse(fallback);
     }
 
     const systemPrompt = [
-      "You are Keerthana B V's expert portfolio AI assistant.",
-      "Your tone must be strictly professional, factual, objective, and clean. Do NOT use flowery language, enthusiastic fluff, or self-promotional praise (never use terms like 'our tech-whiz', 'impressive expertise', or 'superstar').",
-      "Format your output cleanly using markdown, bold text for headings, and bullet points with proper line breaks for list items (such as tech stack details).",
-      "Keep responses highly concise and directly to the point. Answer the user's question in 1-2 sentences, or a clean bulleted list if listing items.",
-      "If you do not know the answer based on the context, state it simply and suggest contacting Keerthana at keerthana.b.v.codes@gmail.com.",
+      "You are a warm, knowledgeable assistant chatting with a recruiter or hiring manager about Keerthana B V's work — think helpful and personable, like a colleague who knows her work well, not a corporate policy bot.",
+      "Write in natural, conversational sentences. Never mention 'context', 'knowledge base', retrieval, or any other internal system detail — if you don't know something, just say so warmly and point them to her email.",
+      "Default to plain, friendly sentences. Only reach for a bolded heading or bullet list when you're genuinely listing several distinct items (like a tech stack or multiple projects) — a short answer shouldn't get a heading.",
+      "Stay factual and professional — no exaggerated praise or buzzword-stuffed self-promotion — but be personable and easy to read, like you're genuinely glad to help.",
+      "Say 'Keerthana' at most once per reply (usually the first mention) — after that, refer to her as 'she'/'her'. Repeating her full name in every sentence reads robotic; that's exactly what you should avoid.",
+      "If the answer isn't available, say so naturally (e.g. \"I don't have that on hand, but you can reach her directly at keerthana.b.v.codes@gmail.com\") instead of a stiff refusal.",
     ].join("\n");
 
     const userPrompt = `Use the CONTEXT to answer the USER.\n\nCONTEXT:\n${context || "No context found."}\n\nUSER: ${message}`;
@@ -140,20 +166,22 @@ export async function POST(req: NextRequest) {
     } catch (groqError: any) {
       if (groqError.name === "AbortError") throw groqError;
       console.error("Groq API failed:", groqError.message);
-      return createDirectStreamResponse(
-        "I'm currently experiencing high load or an API issue. Please try again later or contact Keerthana directly."
-      );
+      const fallback = "I'm a little overloaded right now — mind trying again in a moment? Or feel free to reach Keerthana directly at keerthana.b.v.codes@gmail.com.";
+      after(() => logChatTurn({ source, ip, userMessage: message, assistantResponse: fallback, retrievalSucceeded, matchedChunks }));
+      return createDirectStreamResponse(fallback);
     }
 
     const encoder = new TextEncoder();
     const responseStream = new ReadableStream({
       async start(controller) {
+        let fullResponse = "";
         try {
           for await (const chunk of stream) {
             if (signal.aborted) break;
-            
+
             const content = chunk.choices[0]?.delta?.content || "";
             if (content) {
+              fullResponse += content;
               const data = `data: ${JSON.stringify({ content })}\n\n`;
               controller.enqueue(encoder.encode(data));
             }
@@ -164,6 +192,12 @@ export async function POST(req: NextRequest) {
           }
         } finally {
           controller.close();
+          // Only log a turn that actually produced a reply — an aborted
+          // request (user hit stop, or unmounted) shouldn't leave a
+          // half-formed row in the logs.
+          if (fullResponse) {
+            after(() => logChatTurn({ source, ip, userMessage: message, assistantResponse: fullResponse, retrievalSucceeded, matchedChunks }));
+          }
         }
       },
     });
