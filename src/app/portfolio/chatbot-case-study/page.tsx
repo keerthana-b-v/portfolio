@@ -8,7 +8,7 @@ export default function ChatbotCaseStudy() {
   return (
     <main className="flex-1 w-full overflow-y-auto bg-slate-200 py-12 md:py-24 px-4 sm:px-6 font-sans text-slate-900 selection:bg-orange-200 flex flex-col items-center">
       
-      <div className="w-full max-w-6xl bg-white shadow-2xl rounded-2xl overflow-hidden relative mt-4 mb-24 shrink-0">
+      <div className="w-[95%] max-w-[1400px] bg-white shadow-2xl rounded-2xl overflow-hidden relative mt-4 mb-24 shrink-0">
         
         {/* Back Button */}
         <Link 
@@ -19,7 +19,7 @@ export default function ChatbotCaseStudy() {
         </Link>
 
         {/* Top Half (White Background) */}
-        <div className="px-12 md:px-20 pt-24 pb-16 flex flex-col md:flex-row items-center justify-between gap-12">
+        <div className="px-12 md:px-20 pt-16 pb-10 flex flex-col md:flex-row items-center justify-between gap-12">
           
           <div className="md:w-1/2">
             <div className="text-xs font-bold tracking-widest uppercase text-slate-500 mb-6">
@@ -34,17 +34,17 @@ export default function ChatbotCaseStudy() {
           </div>
 
           {/* Abstract Illustration Representation */}
-          <div className="md:w-1/2 relative h-64 w-full flex items-center justify-center">
-            <div className="absolute w-48 h-48 bg-orange-500 rounded-full mix-blend-multiply opacity-80 animate-blob"></div>
-            <div className="absolute w-48 h-48 bg-teal-500 rounded-full mix-blend-multiply opacity-80 animate-blob animation-delay-2000 left-20"></div>
-            <div className="relative z-10 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 flex items-center justify-center gap-4 rotate-3">
-              <Bot size={48} className="text-slate-800" />
-              <Zap size={32} className="text-orange-500" />
-              <MessageSquare size={40} className="text-teal-600" />
+          <div className="md:w-1/2 relative h-40 md:h-48 w-full flex items-center justify-center mt-4 md:mt-0">
+            <div className="absolute w-32 h-32 bg-orange-500 rounded-full mix-blend-multiply opacity-80 animate-blob"></div>
+            <div className="absolute w-32 h-32 bg-teal-500 rounded-full mix-blend-multiply opacity-80 animate-blob animation-delay-2000 left-12 md:left-20"></div>
+            <div className="relative z-10 bg-white p-4 md:p-6 rounded-2xl shadow-xl border border-slate-100 flex items-center justify-center gap-4 rotate-3">
+              <Bot size={40} className="text-slate-800" />
+              <Zap size={28} className="text-orange-500" />
+              <MessageSquare size={32} className="text-teal-600" />
             </div>
             {/* Small floating elements */}
-            <div className="absolute top-10 left-10 bg-white p-2 rounded-lg shadow-md rotate-[-10deg]"><ShieldCheck size={20} className="text-green-500"/></div>
-            <div className="absolute bottom-10 right-10 bg-white px-3 py-1 rounded-full shadow-md text-xs font-bold text-slate-700">94.4% F1</div>
+            <div className="absolute top-4 md:top-8 left-4 md:left-10 bg-white p-2 rounded-lg shadow-md rotate-[-10deg]"><ShieldCheck size={18} className="text-green-500"/></div>
+            <div className="absolute bottom-4 md:bottom-8 right-4 md:right-10 bg-white px-3 py-1 rounded-full shadow-md text-[10px] md:text-xs font-bold text-slate-700">94.4% F1</div>
           </div>
         </div>
 
