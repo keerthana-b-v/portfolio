@@ -8,7 +8,7 @@ export default function ChatbotCaseStudy() {
   return (
     <main className="flex-1 w-full overflow-y-auto bg-slate-200 py-12 md:py-24 px-4 sm:px-6 font-sans text-slate-900 selection:bg-orange-200 flex flex-col items-center">
       
-      <div className="w-[95%] max-w-[1400px] bg-white shadow-2xl rounded-2xl overflow-hidden relative mt-4 mb-24 shrink-0">
+      <div className="w-[95%] max-w-[1000px] bg-white shadow-2xl rounded-2xl overflow-hidden relative mt-4 mb-24 shrink-0">
         
         {/* Back Button */}
         <Link 
@@ -56,36 +56,36 @@ export default function ChatbotCaseStudy() {
             
             {/* Overview */}
             <section>
-              <h3 className="text-base font-bold text-slate-900 mb-3 uppercase tracking-wide">Project Overview</h3>
-              <p className="text-sm text-slate-600 leading-relaxed font-medium text-justify">
+              <h3 className="text-lg font-bold text-slate-900 mb-3 uppercase tracking-wide">Project Overview</h3>
+              <p className="text-base text-slate-600 leading-relaxed font-medium text-justify">
                 An intelligent conversational support agent designed to guide users through shipping, returns, and warranty policies. The platform decouples a fast FastAPI backend from a sleek, glassmorphic React client, utilizing server-sent events (SSE) to stream answers in real-time.
               </p>
             </section>
 
             {/* Engineering Decisions (Fieldset Style) */}
             <fieldset className="border-t-2 border-orange-500 pt-6 mt-8 relative">
-              <legend className="text-orange-500 font-black uppercase tracking-widest text-sm px-2 -ml-2 bg-slate-100 absolute -top-3">
+              <legend className="text-orange-500 font-black uppercase tracking-widest text-base px-2 -ml-2 bg-slate-100 absolute -top-3">
                 Engineering Decisions
               </legend>
               
               <div className="space-y-6">
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900 mb-1">The 512MB RAM Constraint</h4>
-                  <p className="text-sm text-slate-600 leading-relaxed text-justify">
+                  <h4 className="text-base font-bold text-slate-900 mb-1">The 512MB RAM Constraint</h4>
+                  <p className="text-base text-slate-600 leading-relaxed text-justify">
                     Hosting RAG systems using local embeddings regularly triggered Out-Of-Memory crashes. 
                     <span className="block mt-1 font-semibold text-slate-800">Result: Transitioned to an offline BM25 retrieval index, reducing RAM utilization by 90% (to ~65MB) while running in &lt;1ms.</span>
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900 mb-1">The Punctuation Miss</h4>
-                  <p className="text-sm text-slate-600 leading-relaxed text-justify">
+                  <h4 className="text-base font-bold text-slate-900 mb-1">The Punctuation Miss</h4>
+                  <p className="text-base text-slate-600 leading-relaxed text-justify">
                     Naive whitespace tokenization caused query misses on punctuated text.
                     <span className="block mt-1 font-semibold text-slate-800">Result: Designed a custom regex tokenizer, boosting Context Precision by 23%.</span>
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900 mb-1">False Escalations</h4>
-                  <p className="text-sm text-slate-600 leading-relaxed text-justify">
+                  <h4 className="text-base font-bold text-slate-900 mb-1">False Escalations</h4>
+                  <p className="text-base text-slate-600 leading-relaxed text-justify">
                     Simple keyword routing initiated tickets too aggressively on casual negative words.
                     <span className="block mt-1 font-semibold text-slate-800">Result: Integrated stateful SQLite logging. Escalation only triggers after 2 consecutive frustrated turns.</span>
                   </p>
@@ -95,8 +95,8 @@ export default function ChatbotCaseStudy() {
 
             {/* Approach / Tech Stack */}
             <section>
-              <h3 className="text-base font-bold text-orange-500 mb-4 uppercase tracking-wide">Technology Stack</h3>
-              <ul className="text-sm text-slate-600 space-y-2 list-disc pl-4 font-medium">
+              <h3 className="text-lg font-bold text-orange-500 mb-4 uppercase tracking-wide">Technology Stack</h3>
+              <ul className="text-base text-slate-600 space-y-2 list-disc pl-4 font-medium">
                 <li><span className="font-bold text-slate-800">Frontend:</span> React (Vite), SSE Streaming</li>
                 <li><span className="font-bold text-slate-800">Backend:</span> FastAPI, LangChain, ChatGroq, SQLite</li>
                 <li><span className="font-bold text-slate-800">Security:</span> Rate Limiter, Prompt Injection Defense</li>
@@ -112,36 +112,36 @@ export default function ChatbotCaseStudy() {
             <div className="space-y-8">
               {/* Results (Fieldset Style) */}
               <fieldset className="border-t-2 border-orange-500 pt-6 relative bg-white p-6 rounded-b-xl shadow-sm">
-                <legend className="text-orange-500 font-black uppercase tracking-widest text-sm px-2 -ml-2 bg-slate-100 absolute -top-3">
+                <legend className="text-orange-500 font-black uppercase tracking-widest text-base px-2 -ml-2 bg-slate-100 absolute -top-3">
                   Quantifiable Results
                 </legend>
                 
                 <div className="space-y-4">
                   <div>
-                    <h4 className="text-base font-bold text-slate-900">94.44% Faithfulness</h4>
-                    <p className="text-[11px] text-slate-500 uppercase tracking-wider font-bold">No Hallucinations</p>
+                    <h4 className="text-lg font-bold text-slate-900">94.44% Faithfulness</h4>
+                    <p className="text-xs text-slate-500 uppercase tracking-wider font-bold">No Hallucinations</p>
                   </div>
                   <div>
-                    <h4 className="text-base font-bold text-slate-900">97.78% Answer Relevancy</h4>
-                    <p className="text-[11px] text-slate-500 uppercase tracking-wider font-bold">Directness</p>
+                    <h4 className="text-lg font-bold text-slate-900">97.78% Answer Relevancy</h4>
+                    <p className="text-xs text-slate-500 uppercase tracking-wider font-bold">Directness</p>
                   </div>
                   <div>
-                    <h4 className="text-base font-bold text-slate-900">85.56% Context Precision</h4>
-                    <p className="text-[11px] text-slate-500 uppercase tracking-wider font-bold">Retrieval Focus</p>
+                    <h4 className="text-lg font-bold text-slate-900">85.56% Context Precision</h4>
+                    <p className="text-xs text-slate-500 uppercase tracking-wider font-bold">Retrieval Focus</p>
                   </div>
                   <div>
-                    <h4 className="text-base font-bold text-slate-900">100% Accuracy & Security</h4>
-                    <p className="text-[11px] text-slate-500 uppercase tracking-wider font-bold">Router & Prompt Injection Defense</p>
+                    <h4 className="text-lg font-bold text-slate-900">100% Accuracy & Security</h4>
+                    <p className="text-xs text-slate-500 uppercase tracking-wider font-bold">Router & Prompt Injection Defense</p>
                   </div>
                 </div>
               </fieldset>
 
               {/* Conclusion */}
               <fieldset className="border-t-2 border-orange-500 pt-6 relative">
-                <legend className="text-orange-500 font-black uppercase tracking-widest text-sm px-2 -ml-2 bg-slate-100 absolute -top-3">
+                <legend className="text-orange-500 font-black uppercase tracking-widest text-base px-2 -ml-2 bg-slate-100 absolute -top-3">
                   Conclusion
                 </legend>
-                <p className="text-sm text-slate-600 leading-relaxed text-justify font-medium">
+                <p className="text-base text-slate-600 leading-relaxed text-justify font-medium">
                   By abandoning heavy generic frameworks in favor of a lean, custom-engineered RAG pipeline, this agent achieved 100% security against prompt injection and top-tier relevancy metrics, all while running safely within strict 512MB memory constraints.
                 </p>
               </fieldset>
@@ -149,10 +149,10 @@ export default function ChatbotCaseStudy() {
 
             {/* Contact Card */}
             <div className="mt-12 bg-white border border-slate-200 p-5 rounded-xl shadow-sm">
-              <ul className="space-y-3 text-xs font-bold text-slate-700">
-                <li className="flex items-center gap-3"><Phone size={14} className="text-orange-500"/> +91 9901724479</li>
-                <li className="flex items-center gap-3"><Mail size={14} className="text-orange-500"/> keerthana.b.v.codes@gmail.com</li>
-                <li className="flex items-center gap-3"><MapPin size={14} className="text-orange-500"/> Bengaluru, Karnataka</li>
+              <ul className="space-y-3 text-sm font-bold text-slate-700">
+                <li className="flex items-center gap-3"><Phone size={16} className="text-orange-500"/> +91 9901724479</li>
+                <li className="flex items-center gap-3"><Mail size={16} className="text-orange-500"/> keerthana.b.v.codes@gmail.com</li>
+                <li className="flex items-center gap-3"><MapPin size={16} className="text-orange-500"/> Bengaluru, Karnataka</li>
               </ul>
             </div>
             
