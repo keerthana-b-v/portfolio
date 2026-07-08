@@ -42,7 +42,7 @@ export default function Home() {
     { label: 'RESEARCH', href: '#', onClick: () => setActiveTab('RESEARCH') },
     { label: 'SKILLS', href: '#', onClick: () => setActiveTab('SKILLS') },
     { label: 'CONTACT', href: '#', onClick: () => setActiveTab('CONTACT') },
-    { label: 'RESUME', href: '/Keerthana_BV_.pdf', onClick: () => window.open('/Keerthana_BV_.pdf', '_blank') },
+    { label: 'RESUME', href: '/resume.pdf', onClick: () => window.open('/resume.pdf', '_blank') },
     { label: 'BLOG', href: 'https://blog.keerthanabv.in', onClick: () => window.open('https://blog.keerthanabv.in', '_blank') }
   ];
 

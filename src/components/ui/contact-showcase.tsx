@@ -10,7 +10,7 @@ export const ContactShowcase = () => {
     { icon: FaGraduationCap, label: "Google Scholar", href: "https://scholar.google.com/", color: "bg-blue-500" },
     { icon: FaEnvelope, label: "Email Me", href: "mailto:keerthana.b.v.codes@gmail.com", color: "bg-red-500" },
     { icon: FaPhone, label: "9901724479", href: "tel:+919901724479", color: "bg-emerald-500" },
-    { icon: FaFileAlt, label: "Resume", href: "/Keerthana_BV_.pdf", color: "bg-purple-500" },
+    { icon: FaFileAlt, label: "Resume", href: "/resume.pdf", color: "bg-purple-500" },
     { icon: FaBlog, label: "Blog", href: "https://blog.keerthanabv.in", color: "bg-orange-500" },
   ];
 
