@@ -103,7 +103,7 @@ export default function ChatWidget() {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       hideTimeout = setTimeout(() => {
         setShowTooltip(false);
-      }, 5200);
+      }, 8000);
     }
 
     return () => {
@@ -362,9 +362,9 @@ export default function ChatWidget() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="fixed z-[60] top-8 right-[5.5rem] md:top-auto md:bottom-17 md:right-[12rem] md:left-auto px-4 py-2 bg-black text-white text-sm rounded-full shadow-lg pointer-events-auto"
+            className="fixed z-[60] top-8 right-[5.5rem] md:top-auto md:bottom-17 md:right-[12rem] md:left-auto px-4 py-2 bg-black text-white text-sm rounded-full shadow-lg pointer-events-auto whitespace-nowrap"
           >
-            Ask about my work &rarr;
+            💬 Chat or 🎤 talk to my AI assistant &rarr;
           </motion.div>
         )}
       </AnimatePresence>
@@ -387,11 +387,14 @@ export default function ChatWidget() {
       </AnimatePresence>
 
       {/* Trigger Button & Desktop Chat Window (Attached) */}
-      <motion.div 
-        drag 
-        dragConstraints={{ top: -800, left: -1000, right: 0, bottom: 0 }} 
-        dragElastic={0} 
+      <motion.div
+        drag
+        dragConstraints={{ top: -800, left: -1000, right: 0, bottom: 0 }}
+        dragElastic={0}
         dragMomentum={false}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 260, damping: 15, delay: 0.4 }}
         className={`fixed top-4 right-4 md:top-auto md:bottom-12 md:right-24 md:left-auto z-[9999] pointer-events-auto font-sans ${isOpen ? 'hidden md:block' : ''}`}
       >
         <AnimatePresence>

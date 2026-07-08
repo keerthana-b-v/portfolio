@@ -6,6 +6,7 @@ import { Pool } from 'pg';
 
 const chunks = [
   "Keerthana B V is an AI Solutions Engineer based in Bengaluru, specializing in Voice AI, Prompt Engineering, and LLM Agents. She designs, prompts, and ships production conversational agents end-to-end.",
+  "This chatbot is Keerthana's AI assistant, not Keerthana herself — it's a live RAG-and-voice-enabled demo she built into her portfolio, here to answer questions about her projects, skills, and experience on her behalf.",
   "Keerthana's career highlights: a deployed RAG customer support agent validated at 94.4% faithfulness and 85.5% context precision (RAGAS) with a 100% prompt-injection block rate, a multilingual voice agent built on Vapi AI and GPT-4o-mini, and a Best Paper (NCRIE 2025) for a LoRA-fine-tuned BERT legal document model. This chatbot you're talking to right now is itself a RAG pipeline she built end-to-end — a live demo of her work, not just a portfolio listing.",
   "Keerthana served as a Full Stack Developer at ASPL Tech Solutions Pvt. Ltd., Bengaluru (Oct 2025 – Mar 2026). She collaborated directly with 5+ clients to gather requirements, run project updates, and translate business goals into production software, building client-facing web applications in React.js and Node.js.",
   "Keerthana served as a MERN Stack Developer Intern at Dyashin Technosoft Pvt. Ltd., Bengaluru (Nov 2024 – Jan 2025), where she built a MERN e-commerce platform, resolved 15+ critical UAT bugs, and cut post-launch defects by 40%.",
@@ -22,7 +23,7 @@ const chunks = [
   "Keerthana's broader engineering stack includes React, Next.js, Node.js, TypeScript, Tailwind CSS, PostgreSQL, Python, FastAPI, Docker, AWS, and CI/CD pipelines — she designs schemas, integrates models, configures servers, and ships UIs end to end.",
   "Keerthana holds an MCA from RV Institute of Technology and Management with a CGPA of 8.2 (graduation Aug 2025), and a BCA from Community Institute of Commerce and Management with a CGPA of 8.4 (2023).",
   "Keerthana is fluent in English (professional proficiency), Kannada, and Telugu.",
-  "Keerthana is actively looking for roles in AI solutions engineering, voice AI, prompt engineering, conversational AI / chatbot development, or AI agent development where she can keep building things that matter. She is open to remote and relocation.",
+  "Keerthana is actively looking for roles in AI solutions engineering, voice AI, prompt engineering, conversational AI / chatbot development, or AI agent development where she can keep building things that matter. She is open to remote roles and to in-office/on-site roles based in Bengaluru, but not to relocating outside Bengaluru.",
   "You can contact Keerthana directly via email at keerthana.b.v.codes@gmail.com or call her at +91 9901724479."
 ];
 

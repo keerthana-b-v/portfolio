@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { ChevronDown, Code2, Cpu, Mic, Workflow, MessageSquare } from "lucide-react";
+import { ChevronDown, Code2, Cpu, Mic, Workflow, MessageSquare, Database, Server, Wrench, Briefcase } from "lucide-react";
 
 export const SkillsShowcase = () => {
-  const [activeCategories, setActiveCategories] = useState<number[]>([0, 1, 2, 3, 4]);
+  const [activeCategories, setActiveCategories] = useState<number[]>([0, 1, 2, 3, 4, 5, 6, 7, 8]);
 
   const skillCategories = [
     {
@@ -28,8 +28,28 @@ export const SkillsShowcase = () => {
       skills: ["Make.com", "Webhooks", "Google Sheets pipelines", "REST APIs", "Error-handling Routes", "Low-code Workflows"]
     },
     {
+      title: "Frontend Development",
+      icon: <Code2 size={24} className="text-sky-600" />,
+      skills: ["React.js", "Next.js", "TypeScript", "TailwindCSS", "Framer Motion", "Redux", "HTML5", "CSS3"]
+    },
+    {
+      title: "Backend & Cloud",
+      icon: <Server size={24} className="text-red-600" />,
+      skills: ["Node.js", "Express.js", "FastAPI", "Python", "Nginx", "Linux VPS", "REST APIs", "JWT"]
+    },
+    {
+      title: "Database & Storage",
+      icon: <Database size={24} className="text-indigo-600" />,
+      skills: ["MongoDB", "PostgreSQL", "MySQL", "Redis", "FAISS", "Vector DBs"]
+    },
+    {
+      title: "Tools & DevOps",
+      icon: <Wrench size={24} className="text-amber-600" />,
+      skills: ["Git", "GitHub", "Docker", "Postman", "Vercel", "Figma"]
+    },
+    {
       title: "Engineering & Client-Facing",
-      icon: <Code2 size={24} className="text-gray-600" />,
+      icon: <Briefcase size={24} className="text-gray-600" />,
       skills: ["Python", "JavaScript", "SQL", "FastAPI", "React.js", "Git", "Requirement Gathering", "Client Demos", "UAT"]
     }
   ];

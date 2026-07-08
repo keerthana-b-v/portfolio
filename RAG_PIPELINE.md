@@ -14,7 +14,7 @@ Here's the full pipeline, end to end, as it's actually built in this repo.
 
 - **Schema**: `kb_chunks(id, content, metadata jsonb, embedding vector(384))` (defined in `scripts/setup.sql`).
 - **Retrieval**: A Postgres function, `match_kb_chunks(query_embedding, match_threshold, match_count)`, using cosine distance (`<=>` operator) converted to similarity (`1 - distance`), filtered by threshold, ordered, limited.
-- **Execution**: Called from the API route as a single parameterized query: `SELECT ... FROM match_kb_chunks($1::vector, $2, $3)` — top 5 chunks, threshold defaults to `0.15` but is overridable via `RAG_SIMILARITY_THRESHOLD` env var.
+- **Execution**: Called from the API route as a single parameterized query: `SELECT ... FROM match_kb_chunks($1::vector, $2, $3)` — top 20 chunks (effectively the whole KB, since MiniLM's average-pooled embeddings don't discriminate precisely across ~20 short, lexically-similar bio sentences; retrieval's real job at this KB size is screening out off-topic questions via the threshold, not precision ranking), threshold defaults to `0.15` but is overridable via `RAG_SIMILARITY_THRESHOLD` env var.
 - **Efficiency**: Reuses the same Postgres connection (pg Pool) that's already needed for logging, so there's no second database/service to run.
 
 ## 3. Knowledge Base Content & Seeding
