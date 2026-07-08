@@ -41,17 +41,38 @@ const projects: Project[] = [
   },
   {
     id: 2,
+    title: "AI Customer Support Conversational Agent",
+    role: "AI Developer",
+    description: [
+      "Architected and deployed a full-stack e-commerce support RAG agent streaming real-time responses via SSE at sub-second latency; live on Render + Vercel.",
+      "Red-teamed the agent with adversarial inputs and built double-layer prompt-injection defenses.",
+      "Validated answer quality with a custom RAGAS evaluation runner — 94.4% faithfulness and 85.5% context precision."
+    ],
+    stats: [
+      { value: "94.4%", label: "Faithful" },
+      { value: "100%", label: "Secure" },
+      { value: "Live", label: "Status" }
+    ],
+    link: "https://ai-customer-support-conversational.vercel.app/",
+    image: "/chatbot.png",
+    icons: [
+      { icon: <SiFastapi size={16} />, label: "FastAPI" },
+      { icon: <SiReact size={16} />, label: "React" },
+      { icon: <FaDatabase size={16} />, label: "SQLite" }
+    ],
+  },
+  {
+    id: 3,
     title: "AI Legal Doc Intelligence",
     role: "Lead Full Stack AI Engineer",
     description: [
-      "Fine-tuned Legal-BERT using LoRA for parameter-efficient training, achieving 84.9% F1-score and 84.7% accuracy on the 510-contract CUAD benchmark in ~3 hours.",
-      "Engineered a data pipeline using Pandas and Hugging Face Datasets to parse character-span annotations across long-form contracts.",
-      "Tracked precision, recall, and confusion matrix analysis to address class imbalance, surfacing this in a live React dashboard."
+      "Fine-tuned a domain-specific BERT model with LoRA to 84.9% F1 on the 510-contract CUAD benchmark in ~3 hours on a single T4 GPU; published with Best Paper Distinction.",
+      "Applied evidence-driven evaluation (precision, recall, confusion-matrix analysis)."
     ],
     stats: [
       { value: "84.9%", label: "F1" },
       { value: "510", label: "Docs" },
-      { value: "Live", label: "Status" }
+      { value: "NCRIE", label: "Paper" }
     ],
     link: "https://github.com/keerthana-b-v/AI-Powered-Legal-Document-Analysis-with-an-Integrated-Trust-and-Safety-Framework-",
     image: "/legal.png",
@@ -59,27 +80,6 @@ const projects: Project[] = [
       { icon: <SiPytorch size={16} />, label: "PyTorch" },
       { icon: <SiHuggingface size={16} />, label: "Hugging Face" },
       { icon: <SiReact size={16} />, label: "React" }
-    ],
-  },
-  {
-    id: 3,
-    title: "E-Commerce AI Support Agent (Flagship Project)",
-    role: "AI Developer",
-    description: [
-      "Developed a full-stack e-commerce RAG agent serving streaming responses via Server-Sent Events (SSE).",
-      "Optimized memory footprint by 90% (to <100MB) using custom-tokenized BM25 keyword index to prevent cloud container crashes.",
-      "Engineered double-layer prompt injection defenses (100% block rate) and stateful auto-escalation ticket logging."
-    ],
-    stats: [
-      { value: "FastAPI", label: "API" },
-      { value: "React", label: "UI" },
-      { value: "LangChain", label: "LLM" }
-    ],
-    image: "/chatbot.png",
-    icons: [
-      { icon: <SiFastapi size={16} />, label: "FastAPI" },
-      { icon: <SiReact size={16} />, label: "React" },
-      { icon: <FaDatabase size={16} />, label: "SQLite" }
     ],
   },
 ];

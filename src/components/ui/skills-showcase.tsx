@@ -1,36 +1,36 @@
 "use client";
 
 import React, { useState } from "react";
-import { ChevronDown, Database, Server, Code2, Cpu, Wrench } from "lucide-react";
+import { ChevronDown, Code2, Cpu, Mic, Workflow, MessageSquare } from "lucide-react";
 
 export const SkillsShowcase = () => {
   const [activeCategories, setActiveCategories] = useState<number[]>([0, 1, 2, 3, 4]);
 
   const skillCategories = [
     {
-      title: "Frontend",
-      icon: <Code2 size={24} className="text-blue-600" />,
-      skills: ["React.js", "Next.js", "TypeScript", "TailwindCSS", "Framer Motion", "Redux", "HTML5", "CSS3"]
+      title: "Prompt Engineering",
+      icon: <MessageSquare size={24} className="text-purple-600" />,
+      skills: ["System Prompts", "Dialogue Flow", "Context Handling", "JSON Schema", "Slot-filling", "Red-teaming", "Injection Defense", "Hallucination Mitigation"]
     },
     {
-      title: "Backend & Cloud",
-      icon: <Server size={24} className="text-emerald-600" />,
-      skills: ["Node.js", "Express.js", "FastAPI", "Python", "Nginx", "Linux VPS", "REST APIs", "JWT"]
+      title: "Voice AI",
+      icon: <Mic size={24} className="text-blue-600" />,
+      skills: ["Vapi AI (STT/TTS)", "Twilio", "Call-flow Design", "Tanglish & Vernacular", "Latency-aware Turn-taking"]
     },
     {
-      title: "Database & Storage",
-      icon: <Database size={24} className="text-orange-600" />,
-      skills: ["MongoDB", "PostgreSQL", "MySQL", "Redis", "FAISS", "Vector DBs"]
+      title: "LLM Tooling",
+      icon: <Cpu size={24} className="text-emerald-600" />,
+      skills: ["GPT-4o-mini", "Llama-3.1 (Groq)", "LangChain", "RAG", "RAGAS Evaluation", "FAISS/BM25", "Context Windows"]
     },
     {
-      title: "AI & Machine Learning",
-      icon: <Cpu size={24} className="text-purple-600" />,
-      skills: ["PyTorch", "Hugging Face", "LangChain", "BERT", "ONNX Runtime", "RAG"]
+      title: "Automation & Integration",
+      icon: <Workflow size={24} className="text-orange-600" />,
+      skills: ["Make.com", "Webhooks", "Google Sheets pipelines", "REST APIs", "Error-handling Routes", "Low-code Workflows"]
     },
     {
-      title: "Tools & DevOps",
-      icon: <Wrench size={24} className="text-gray-600" />,
-      skills: ["Git", "GitHub", "Docker", "Postman", "Vercel", "Figma"]
+      title: "Engineering & Client-Facing",
+      icon: <Code2 size={24} className="text-gray-600" />,
+      skills: ["Python", "JavaScript", "SQL", "FastAPI", "React.js", "Git", "Requirement Gathering", "Client Demos", "UAT"]
     }
   ];
 

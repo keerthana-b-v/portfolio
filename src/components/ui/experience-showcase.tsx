@@ -11,32 +11,44 @@ export const ExperienceShowcase = () => {
         
         {/* Left: Timeline & Role */}
         <div className="flex-1">
-          <div className="bg-white p-8 md:p-10 rounded-3xl border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] relative overflow-hidden">
+          {/* ASPL Card */}
+          <div className="bg-white p-6 md:p-8 rounded-3xl border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] relative overflow-hidden mb-6">
             <div className="absolute top-0 left-0 w-full h-2 bg-blue-600" />
             
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-3xl font-extrabold text-gray-900 tracking-tight">ASPL Tech Solutions Pvt. Ltd.</h3>
+              <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight">ASPL Tech Solutions Pvt. Ltd.</h3>
             </div>
             
-            <p className="text-lg font-bold text-blue-600 mb-1">Full Stack Developer · Product Delivery Focus</p>
-            <p className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-8">Oct 23, 2025 – Mar 23, 2026</p>
+            <p className="text-base font-bold text-blue-600 mb-1">Full Stack Developer</p>
+            <p className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-6">Oct 2025 – Mar 2026</p>
 
-            <ul className="space-y-6">
+            <ul className="space-y-4">
               <li className="flex gap-4">
-                <div className="mt-1 p-2 bg-blue-50 text-blue-600 rounded-full h-fit"><Briefcase size={18} /></div>
-                <p className="text-gray-700 leading-relaxed font-medium">Executed the full-cycle delivery of <strong>8+ production applications</strong> within a high-intensity delivery sprint, managing the complete roadmap from architectural design to cloud deployment.</p>
+                <div className="mt-1 p-2 bg-blue-50 text-blue-600 rounded-full h-fit"><Users size={16} /></div>
+                <p className="text-gray-700 leading-relaxed font-medium text-sm">Collaborated directly with 5+ clients to gather requirements, run project updates, and align deliverables with business needs — hands-on experience translating customer goals into working software.</p>
               </li>
               <li className="flex gap-4">
-                <div className="mt-1 p-2 bg-emerald-50 text-emerald-600 rounded-full h-fit"><Users size={18} /></div>
-                <p className="text-gray-700 leading-relaxed font-medium">Built a full-stack HRMS platform digitizing onboarding for 4 departments, reducing administrative processing time by <strong>35%</strong>.</p>
+                <div className="mt-1 p-2 bg-emerald-50 text-emerald-600 rounded-full h-fit"><Server size={16} /></div>
+                <p className="text-gray-700 leading-relaxed font-medium text-sm">Developed client-facing web applications (React.js, Node.js) for healthcare and retail; built an automated HRMS onboarding module and implemented RBAC + JWT authentication.</p>
               </li>
+            </ul>
+          </div>
+
+          {/* Dyashin Card */}
+          <div className="bg-white p-6 md:p-8 rounded-3xl border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-2 bg-purple-600" />
+            
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight">Dyashin Technosoft Pvt. Ltd.</h3>
+            </div>
+            
+            <p className="text-base font-bold text-purple-600 mb-1">MERN Stack Developer Intern</p>
+            <p className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-6">Nov 2024 – Jan 2025</p>
+
+            <ul className="space-y-4">
               <li className="flex gap-4">
-                <div className="mt-1 p-2 bg-purple-50 text-purple-600 rounded-full h-fit"><ShieldCheck size={18} /></div>
-                <p className="text-gray-700 leading-relaxed font-medium">Implemented secure RBAC with JWT/bcrypt and optimized RESTful APIs for real-time Recharts dashboards, improving client satisfaction scores by <strong>15%</strong>.</p>
-              </li>
-              <li className="flex gap-4">
-                <div className="mt-1 p-2 bg-orange-50 text-orange-600 rounded-full h-fit"><Server size={18} /></div>
-                <p className="text-gray-700 leading-relaxed font-medium">Configured and managed <strong>3+ live production sites</strong> on Linux VPS using Nginx, handling full SDLC orchestration including SSL/TLS and domain management.</p>
+                <div className="mt-1 p-2 bg-purple-50 text-purple-600 rounded-full h-fit"><Briefcase size={16} /></div>
+                <p className="text-gray-700 leading-relaxed font-medium text-sm">Built a full-stack MERN e-commerce platform (JWT auth, 15+ documented REST endpoints); resolved 15+ critical UAT bugs, cutting post-launch defects by 40%.</p>
               </li>
             </ul>
           </div>

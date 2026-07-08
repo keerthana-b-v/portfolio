@@ -27,30 +27,40 @@ export const MobileExperienceShowcase = () => {
 
       <div className="flex-1 overflow-y-auto pb-8 hide-scrollbar">
         {!showProjects ? (
-          <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.05)] relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1.5 bg-blue-600" />
-            <h3 className="text-xl font-extrabold text-gray-900 tracking-tight mb-1 mt-2">ASPL Tech Solutions</h3>
-            <p className="text-sm font-bold text-blue-600 mb-1">Full Stack Developer</p>
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-6">Oct 23, 2025 – Mar 23, 2026</p>
+          <div className="flex flex-col gap-4">
+            {/* ASPL Card */}
+            <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.05)] relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1.5 bg-blue-600" />
+              <h3 className="text-xl font-extrabold text-gray-900 tracking-tight mb-1 mt-1">ASPL Tech Solutions</h3>
+              <p className="text-sm font-bold text-blue-600 mb-1">Full Stack Developer</p>
+              <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Oct 2025 – Mar 2026</p>
 
-            <ul className="space-y-5 mt-4">
-              <li className="flex gap-3">
-                <div className="mt-1 p-1.5 bg-blue-50 text-blue-600 rounded-full h-fit"><Briefcase size={16} /></div>
-                <p className="text-gray-800 text-[15px] leading-relaxed font-medium">Executed full-cycle delivery of <strong>8+ apps</strong> managing architectural design to deployment.</p>
-              </li>
-              <li className="flex gap-3">
-                <div className="mt-1 p-1.5 bg-emerald-50 text-emerald-600 rounded-full h-fit"><Users size={16} /></div>
-                <p className="text-gray-800 text-[15px] leading-relaxed font-medium">Built HRMS platform, reducing processing time by <strong>35%</strong>.</p>
-              </li>
-              <li className="flex gap-3">
-                <div className="mt-1 p-1.5 bg-purple-50 text-purple-600 rounded-full h-fit"><ShieldCheck size={16} /></div>
-                <p className="text-gray-800 text-[15px] leading-relaxed font-medium">Implemented secure RBAC and dashboards, improving client scores by <strong>15%</strong>.</p>
-              </li>
-              <li className="flex gap-3">
-                <div className="mt-1 p-1.5 bg-orange-50 text-orange-600 rounded-full h-fit"><Server size={16} /></div>
-                <p className="text-gray-800 text-[15px] leading-relaxed font-medium">Managed <strong>3+ live sites</strong> on Linux VPS using Nginx.</p>
-              </li>
-            </ul>
+              <ul className="space-y-4">
+                <li className="flex gap-3">
+                  <div className="mt-1 p-1.5 bg-blue-50 text-blue-600 rounded-full h-fit"><Users size={14} /></div>
+                  <p className="text-gray-800 text-sm leading-relaxed font-medium">Collaborated directly with 5+ clients to gather requirements, run project updates, and align deliverables with business needs.</p>
+                </li>
+                <li className="flex gap-3">
+                  <div className="mt-1 p-1.5 bg-emerald-50 text-emerald-600 rounded-full h-fit"><Server size={14} /></div>
+                  <p className="text-gray-800 text-sm leading-relaxed font-medium">Developed client-facing web applications (React.js, Node.js); built automated HRMS onboarding and implemented RBAC + JWT.</p>
+                </li>
+              </ul>
+            </div>
+
+            {/* Dyashin Card */}
+            <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.05)] relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1.5 bg-purple-600" />
+              <h3 className="text-xl font-extrabold text-gray-900 tracking-tight mb-1 mt-1">Dyashin Technosoft</h3>
+              <p className="text-sm font-bold text-purple-600 mb-1">MERN Stack Developer Intern</p>
+              <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Nov 2024 – Jan 2025</p>
+
+              <ul className="space-y-4">
+                <li className="flex gap-3">
+                  <div className="mt-1 p-1.5 bg-purple-50 text-purple-600 rounded-full h-fit"><Briefcase size={14} /></div>
+                  <p className="text-gray-800 text-sm leading-relaxed font-medium">Built a full-stack MERN e-commerce platform (JWT auth, 15+ endpoints); resolved 15+ UAT bugs, cutting defects by 40%.</p>
+                </li>
+              </ul>
+            </div>
           </div>
         ) : (
           <div className="flex flex-col gap-4">
