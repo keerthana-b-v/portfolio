@@ -11,7 +11,7 @@ const dockItems = [
   { icon: FaGraduationCap, label: "Scholar", href: "https://scholar.google.com/citations?view_op=list_works&hl=id&user=-gac19IAAAAJ", colorClass: "text-[#4285F4]" },
   { icon: FaEnvelope, label: "Email", href: "mailto:keerthana.b.v.codes@gmail.com", colorClass: "text-[#EA4335]" },
   { icon: FaPhone, label: "Phone", href: "tel:+919901724479", colorClass: "text-[#34A853]" },
-  { icon: FaFileAlt, label: "Resume", href: "/resume.pdf", colorClass: "text-[#FBBC05]" },
+  { icon: FaFileAlt, label: "Resume", href: "/Keerthana_BV_.pdf", colorClass: "text-[#FBBC05]" },
   { icon: FaBlog, label: "Blog", href: "https://blog.keerthanabv.in", colorClass: "text-[#FF5722]" },
   { icon: FaMapMarkerAlt, label: "Bengaluru, India", href: "#", colorClass: "text-[#9e9e9e]" },
 ];
