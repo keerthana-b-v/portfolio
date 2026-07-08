@@ -68,14 +68,14 @@ export default function Home() {
         <div className="text-center max-w-4xl px-6 flex flex-col items-center select-none w-full">
           <MorphingText 
             texts={[
-              "AI Agent Developer",
-              "Full-Stack Engineer",
+              "AI Solutions Engineer",
+              "Voice AI Developer",
               "Keerthana B V"
             ]} 
             className="text-gray-900 tracking-tight font-black leading-none mb-2 md:mb-12"
           />
           <p className="text-[13px] md:text-lg text-gray-500 max-w-2xl leading-relaxed font-medium mt-6 md:mt-16">
-            I build LLM agents and RAG systems — from a Legal-BERT model scoring 84.9% F1 to production chatbots — plus the full-stack apps that ship them.
+            Voice AI and LLM developer who has designed, prompted, and shipped production conversational agents end to end — from real-time Vapi voice agents to secure, evaluated RAG pipelines.
           </p>
         </div>
       </div>

@@ -5,16 +5,25 @@ import { Pool } from 'pg';
 // Triggering a redeployment to ensure environment variables are picked up by Vercel
 
 const chunks = [
-  "Keerthana B V is a Full Stack Developer based in Bengaluru. She specializes in modern web engineering and applied AI.",
-  "Keerthana served as a Full Stack Developer at ASPL Tech Solutions, taking ownership of production repositories and client deliveries from day one.",
-  "Keerthana's research on AI-powered legal document analysis won Best Paper at NCRIE-2025. It is a deployed, full-stack application backed by a fine-tuned BERT model trained on 510 real contracts.",
-  "Keerthana holds an MCA from RV Institute of Technology and Management with a CGPA of 8.2.",
-  "Keerthana's tech stack includes React, Next.js, Node.js, TypeScript, Tailwind CSS, PostgreSQL, and Python for AI integration.",
-  "Keerthana has delivered 8+ production web applications.",
-  "Keerthana is actively looking for a role where she can keep building things that matter. She is open to remote and relocation.",
-  "You can contact Keerthana directly via email at keerthana.b.v.codes@gmail.com or call her at +91 9901724479.",
-  "Keerthana's portfolio includes a 'Legal Document Analysis System' using BERT, and a scalable e-commerce backend built with Node.js and PostgreSQL.",
-  "Keerthana has experience with Docker, AWS, and CI/CD pipelines."
+  "Keerthana B V is an AI Solutions Engineer based in Bengaluru, specializing in Voice AI, Prompt Engineering, and LLM Agents. She designs, prompts, and ships production conversational agents end-to-end.",
+  "Keerthana's career highlights: a deployed RAG customer support agent validated at 94.4% faithfulness and 85.5% context precision (RAGAS) with a 100% prompt-injection block rate, a multilingual voice agent built on Vapi AI and GPT-4o-mini, and a Best Paper (NCRIE 2025) for a LoRA-fine-tuned BERT legal document model. This chatbot you're talking to right now is itself a RAG pipeline she built end-to-end — a live demo of her work, not just a portfolio listing.",
+  "Keerthana served as a Full Stack Developer at ASPL Tech Solutions Pvt. Ltd., Bengaluru (Oct 2025 – Mar 2026). She collaborated directly with 5+ clients to gather requirements, run project updates, and translate business goals into production software, building client-facing web applications in React.js and Node.js.",
+  "Keerthana served as a MERN Stack Developer Intern at Dyashin Technosoft Pvt. Ltd., Bengaluru (Nov 2024 – Jan 2025), where she built a MERN e-commerce platform, resolved 15+ critical UAT bugs, and cut post-launch defects by 40%.",
+  "Keerthana has hands-on RAG (Retrieval-Augmented Generation) experience across multiple shipped projects: an e-commerce customer support RAG agent, a fine-tuned legal document intelligence system, and this very portfolio chatbot you're talking to right now, which is itself a live RAG pipeline.",
+  "This portfolio chatbot is a real, production RAG system Keerthana built end-to-end: Hugging Face sentence-transformers embeddings, a Postgres + pgvector vector store on Supabase, cosine-similarity retrieval, and Groq's llama-3.1-8b-instant for generation, streamed back over SSE. This conversation is a live demo of her RAG engineering, not just a portfolio listing.",
+  "Keerthana's flagship RAG project is an AI Customer Support Conversational Agent — a full-stack e-commerce support agent built with FastAPI, LangChain, and SQLite, streaming responses in real time over SSE with sub-second latency, deployed on Render and Vercel.",
+  "On that customer support RAG agent, Keerthana red-teamed it with adversarial prompt-injection attacks and built a double-layer defense (keyword screening + LLM classification) that achieved a 100% block rate on the attack test suite.",
+  "Keerthana validated that same RAG agent's answer quality with a custom RAGAS evaluation runner, measuring 94.4% faithfulness and 85.5% context precision, and engineered stateful multi-turn intent routing with sentiment tracking that auto-escalates frustrated customers to a human handoff.",
+  "Keerthana also built an AI Voice Agent — a multilingual (English/Tanglish) conversational voice agent using Vapi AI and OpenAI GPT-4o-mini to automate customer order intake and L1 FAQs, with a serverless Make.com pipeline logging structured call data to Google Sheets and Twilio sending UPI payment links via SMS.",
+  "Keerthana's research on AI-powered legal document analysis won Best Paper at NCRIE-2025. She fine-tuned a domain-specific BERT model with LoRA to 84.9% F1 on the 510-contract CUAD benchmark in about 3 hours on a single T4 GPU — a deployed, full-stack application, not just an academic exercise.",
+  "Keerthana's core LLM/RAG tooling includes LangChain, RAG architecture design, RAGAS evaluation, FAISS/BM25 retrieval, context window management, and working with models like GPT-4o-mini and Llama-3.1 via Groq.",
+  "Keerthana's prompt engineering skills include system prompt design, dialogue flow, context handling, JSON schema constraints, slot-filling, red-teaming, prompt-injection defense, and hallucination mitigation.",
+  "Keerthana's voice AI skills include Vapi AI (STT/TTS), Twilio, call-flow design, Tanglish and vernacular language handling, and latency-aware turn-taking.",
+  "Keerthana's broader engineering stack includes React, Next.js, Node.js, TypeScript, Tailwind CSS, PostgreSQL, Python, FastAPI, Docker, AWS, and CI/CD pipelines — she designs schemas, integrates models, configures servers, and ships UIs end to end.",
+  "Keerthana holds an MCA from RV Institute of Technology and Management with a CGPA of 8.2 (graduation Aug 2025), and a BCA from Community Institute of Commerce and Management with a CGPA of 8.4 (2023).",
+  "Keerthana is fluent in English (professional proficiency), Kannada, and Telugu.",
+  "Keerthana is actively looking for roles in AI solutions engineering, voice AI, prompt engineering, conversational AI / chatbot development, or AI agent development where she can keep building things that matter. She is open to remote and relocation.",
+  "You can contact Keerthana directly via email at keerthana.b.v.codes@gmail.com or call her at +91 9901724479."
 ];
 
 async function getEmbedding(text: string, hfToken: string) {
