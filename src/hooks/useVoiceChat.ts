@@ -97,17 +97,36 @@ export interface UseVoiceChatResult extends VoiceState {
 // Splits on ./!/? followed by whitespace-or-end. Network chunks rarely align
 // with sentence boundaries, so this is run against a running buffer and
 // returns whatever complete sentences it found plus the unconsumed remainder.
+//
+// Decimal numbers (e.g. "94.4%") need special handling: Groq streams
+// token-by-token, so the buffer can momentarily be "...validated at 94."
+// with the "4%" not having arrived yet. Naively treating that trailing
+// period as a sentence end (matched via the regex's end-of-buffer branch)
+// queues "94." for TTS immediately, then "4%" as a separate utterance —
+// audible as "ninety-four... four percent". Two guards fix this: (1) mask
+// any digit.digit period so it's never treated as a boundary once both
+// digits are present, (2) if the buffer currently ends in "<digit>." with
+// nothing after yet, hold that trailing period back in `rest` instead of
+// resolving it, since more digits may still be streaming in.
 function extractSentences(buffer: string): { sentences: string[]; rest: string } {
+  const DECIMAL_PLACEHOLDER = "\u0000";
+  const masked = buffer.replace(/(\d)\.(\d)/g, `$1${DECIMAL_PLACEHOLDER}$2`);
+
+  const ambiguousTrailingDecimal = /\d\.$/;
+  const heldBack = ambiguousTrailingDecimal.test(masked) ? masked.slice(-1) : "";
+  const safeMasked = heldBack ? masked.slice(0, -1) : masked;
+
   const sentenceRegex = /[^.!?]*[.!?]+(?:\s+|$)/g;
   const sentences: string[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
-  while ((match = sentenceRegex.exec(buffer)) !== null) {
+  while ((match = sentenceRegex.exec(safeMasked)) !== null) {
     const sentence = match[0].trim();
-    if (sentence) sentences.push(sentence);
+    if (sentence) sentences.push(sentence.replace(new RegExp(DECIMAL_PLACEHOLDER, "g"), "."));
     lastIndex = sentenceRegex.lastIndex;
   }
-  return { sentences, rest: buffer.slice(lastIndex) };
+  const rest = (safeMasked.slice(lastIndex) + heldBack).replace(new RegExp(DECIMAL_PLACEHOLDER, "g"), ".");
+  return { sentences, rest };
 }
 
 // Ranked by how natural/professional they sound, best first. Availability
@@ -156,6 +175,20 @@ function applyPronunciationOverrides(text: string): string {
     out = out.replace(pattern, replacement);
   }
   return out;
+}
+
+// The LLM's replies can contain markdown (bold, headings, bullets, and —
+// since project-link CTAs use markdown link syntax — "[label](url)").
+// SpeechSynthesisUtterance has no markdown awareness, so left unstripped
+// these get read literally ("asterisk asterisk", "hash nav colon projects").
+// Links are spoken as just their label text; the URL is meaningless aloud.
+function stripMarkdownForSpeech(text: string): string {
+  return text
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/\*\*(.+?)\*\*/g, "$1")
+    .replace(/\*(.+?)\*/g, "$1")
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/^[*+-]\s+/gm, "");
 }
 
 const CTA_MARKER = "[CTA_CONTACT]";
@@ -232,9 +265,13 @@ export function useVoiceChat(options: UseVoiceChatOptions = {}): UseVoiceChatRes
     const voice = selectPreferredVoice(voicesRef.current);
     if (voice) utterance.voice = voice;
     // Slightly slower + a touch higher than default reads as calmer/more
-    // professional than the flat 1.0/1.0 browser default.
-    utterance.rate = 0.98;
-    utterance.pitch = 1.03;
+    // professional than the flat 1.0/1.0 browser default. A small random
+    // jitter per sentence (rather than identical values every time) avoids
+    // the dead-flat cadence that makes back-to-back sentences sound most
+    // robotic — the Web Speech API has no SSML/prosody control, so this is
+    // a mitigation, not a real fix for expressive delivery.
+    utterance.rate = 0.98 + (Math.random() * 0.06 - 0.03);
+    utterance.pitch = 1.03 + (Math.random() * 0.08 - 0.04);
     currentUtteranceRef.current = utterance;
     utterance.onend = () => {
       currentUtteranceRef.current = null;

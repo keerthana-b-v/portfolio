@@ -43,6 +43,28 @@ function formatMessageText(text: string) {
         const labelEnd = part.indexOf("](");
         const label = part.substring(1, labelEnd);
         const url = part.substring(labelEnd + 2, part.length - 1);
+
+        // In-app navigation convention: the LLM emits `(#nav:TAB)` links when
+        // it wants to point the user at a section of the portfolio itself
+        // (e.g. the Projects tab) rather than an external URL. This is a
+        // single-page app with no URL routing, so there's nothing for a
+        // normal <a> to navigate to — dispatch a custom event that page.tsx
+        // listens for instead, and let the widget close itself so the user
+        // actually sees the section that just got triggered.
+        if (url.startsWith("#nav:")) {
+          const tab = url.slice("#nav:".length);
+          return (
+            <button
+              key={partIdx}
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("portfolio-navigate", { detail: tab }))}
+              className="inline-flex items-center gap-1 mt-1 px-3 py-1.5 bg-black text-white text-sm font-semibold rounded-full hover:bg-gray-800 transition-colors cursor-pointer"
+            >
+              {label} &rarr;
+            </button>
+          );
+        }
+
         return (
           <a
             key={partIdx}
@@ -90,6 +112,15 @@ export default function ChatWidget() {
   const mobileMessagesEndRef = useRef<HTMLDivElement>(null);
   const desktopMessagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // A project-link button in a reply dispatches this to tell page.tsx which
+  // tab to switch to; close the widget here too so the user actually sees
+  // the section instead of it being hidden behind the still-open chat.
+  useEffect(() => {
+    const handleNavigate = () => setIsOpen(false);
+    window.addEventListener("portfolio-navigate", handleNavigate);
+    return () => window.removeEventListener("portfolio-navigate", handleNavigate);
+  }, []);
 
   useEffect(() => {
     const showTimeout = setTimeout(() => {

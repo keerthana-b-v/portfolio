@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MinimalistHero } from '@/components/ui/minimalist-hero';
 import { MorphingText } from '@/components/ui/morphing-text';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -22,6 +22,17 @@ import { cn } from '@/lib/utils';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('HOME');
+
+  // ChatWidget dispatches this when a project-link button in a reply is
+  // clicked (see the "#nav:TAB" convention in ChatWidget's link renderer).
+  useEffect(() => {
+    const handleNavigate = (e: Event) => {
+      const tab = (e as CustomEvent<string>).detail;
+      if (tab && tab in tabs) setActiveTab(tab);
+    };
+    window.addEventListener('portfolio-navigate', handleNavigate);
+    return () => window.removeEventListener('portfolio-navigate', handleNavigate);
+  }, []);
 
   const navLinks = [
     { label: 'HOME', href: '#', onClick: () => setActiveTab('HOME') },

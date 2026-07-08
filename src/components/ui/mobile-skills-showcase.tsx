@@ -50,7 +50,7 @@ export const MobileSkillsShowcase = () => {
     {
       title: "Engineering & Client-Facing",
       icon: <Briefcase size={16} className="text-gray-600" />,
-      skills: ["Python", "JavaScript", "SQL", "FastAPI", "React.js", "Git", "Requirement Gathering", "Client Demos", "UAT"]
+      skills: ["Requirement Gathering", "Client Demos", "UAT", "Documentation", "Agile Methodologies"]
     }
   ];
 

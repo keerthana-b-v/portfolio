@@ -14,6 +14,26 @@ const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY || "",
 });
 
+// Whether to append a "[See this project](#nav:PROJECTS)" link is enforced
+// here, not left to a prompt instruction — llama-3.1-8b-instant did not
+// reliably remember to add it even with an explicit, example-backed rule.
+// Same reasoning as the [CTA_CONTACT] marker and the zero-match canned
+// fallback: anything that must be deterministic goes in code, not a prompt.
+const PROJECT_LINK_MARKUP = "[See this project](#nav:PROJECTS)";
+const PROJECT_KEYWORDS = [
+  // AI Customer Support RAG agent
+  "ragas", "prompt-injection", "prompt injection", "customer support",
+  // AI Voice Agent
+  "voice agent", "vapi", "tanglish", "gpt-4o-mini",
+  // Legal Document AI
+  "legal document", "cuad", "lora", "ncrie",
+];
+
+function mentionsSpecificProject(text: string): boolean {
+  const lower = text.toLowerCase();
+  return PROJECT_KEYWORDS.some((kw) => lower.includes(kw));
+}
+
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT_WINDOW_MS = 60000; 
 const MAX_REQUESTS_PER_WINDOW = 10;
@@ -144,12 +164,15 @@ export async function POST(req: NextRequest) {
 
     const systemPrompt = [
       "You are a warm, knowledgeable assistant chatting with a recruiter or hiring manager about Keerthana B V's work — think helpful and personable, like a colleague who knows her work well, not a corporate policy bot.",
+      "NEVER invent a number, percentage, or statistic that is not literally present in CONTEXT — this applies even when it would make an answer sound more concrete or complete. If CONTEXT has no metric for what you're describing, describe it in plain words with zero numbers instead of manufacturing one. A fabricated stat is a factual error about a real person's real work and is worse than an answer with no numbers at all.",
       "If asked about your own identity (e.g. 'who are you', 'are you Keerthana', 'are you a bot/AI') answer directly and confidently, even if CONTEXT looks unrelated: you are Keerthana's AI assistant — a live RAG-and-voice-enabled demo she built into her portfolio to answer questions about her work. Never treat this kind of question as an unknown topic requiring the email fallback.",
       "Write in natural, conversational sentences. Never mention 'context', 'knowledge base', retrieval, or any other internal system detail — if you don't know something, just say so warmly and point them to her email.",
       "Length cap: 3-5 sentences per answer unless the user explicitly asks for more detail or a full list. Recruiters skim — don't pad.",
-      "Every sentence must carry a concrete fact, project name, or metric. Never write filler like 'talented professional', 'strong background', 'passionate about', or 'wide range of skills' — if you don't have a concrete fact to put in a sentence, cut the sentence.",
+      "Every sentence must carry a concrete fact, project name, or metric — a real fact from CONTEXT is enough, a number is not required. Never write filler like 'talented professional', 'strong background', 'passionate about', or 'wide range of skills'; if a sentence has nothing concrete to say, cut it rather than filling it with vague praise OR a made-up number.",
       "When asked about a specific skill or technology, don't just confirm she knows it — name the specific project it was used in and what it accomplished there (e.g. asked about prompt injection defense → the customer support RAG agent's double-layer defense, 100% block rate).",
-      "For broad 'tell me about her' / 'about Keerthana' / 'who is Keerthana' questions, you MUST: (1) open with the positioning line — AI Solutions Engineer, full-stack + LLM intelligence, (2) cite 2-3 concrete highlights WITH their real metrics from the CONTEXT (e.g. the RAGAS faithfulness score, the prompt-injection block rate — never invent or round facts, and never fall back to vague filler like 'several production apps' if the CONTEXT has specific projects/numbers instead), and (3) if a chunk in CONTEXT says this chatbot is itself a RAG pipeline she built, you MUST include that line — it is the single most important fact for this question and must never be dropped in favor of other content.",
+      "The broad-identity opener (positioning line + 2-3 highlights + the self-referential chatbot line) applies ONLY when the question asks about her as a whole person/career with no other topic named — e.g. 'tell me about Keerthana', 'who is she', 'give me an overview'. A question is NOT broad just because it contains the words 'tell me about' — if it names a specific project, skill, or topic ('tell me about her RAG project', 'tell me about her voice AI work'), that is a SPECIFIC question about that named topic, and the broad opener must NOT be used.",
+      "For the broad case ONLY, you MUST: (1) open with the positioning line — AI Solutions Engineer, full-stack + LLM intelligence, (2) cite 2-3 concrete highlights WITH their real metrics from the CONTEXT (never invent or round facts, never fall back to vague filler like 'several production apps' if the CONTEXT has specific projects/numbers instead), and (3) if a chunk in CONTEXT says this chatbot is itself a RAG pipeline she built, you MUST include that line.",
+      "For every SPECIFIC question (a named project, a skill, availability, contact, education, etc.) do NOT open with an identity statement like 'Keerthana is an AI Solutions Engineer...' — answer the named topic directly in the first sentence.",
       "End answers with a light, specific follow-up hook when there's clearly more to say (e.g. 'Want details on the voice agent?') — skip the hook only for answers that are already a complete, narrow fact (like a contact detail).",
       "Default to plain, friendly sentences. Only reach for a bolded heading or bullet list when you're genuinely listing several distinct items (like a tech stack or multiple projects) — a short answer shouldn't get a heading.",
       "Stay factual and professional — no exaggerated praise or buzzword-stuffed self-promotion — but be personable and easy to read, like you're genuinely glad to help.",
@@ -198,6 +221,11 @@ export async function POST(req: NextRequest) {
              console.error("Stream processing error:", err);
           }
         } finally {
+          if (!signal.aborted && fullResponse && !fullResponse.includes("#nav:PROJECTS") && mentionsSpecificProject(fullResponse)) {
+            const linkContent = `\n\n${PROJECT_LINK_MARKUP}`;
+            controller.enqueue(encoder.encode(`data: ${JSON.stringify({ content: linkContent })}\n\n`));
+            fullResponse += linkContent;
+          }
           controller.close();
           // Only log a turn that actually produced a reply — an aborted
           // request (user hit stop, or unmounted) shouldn't leave a
