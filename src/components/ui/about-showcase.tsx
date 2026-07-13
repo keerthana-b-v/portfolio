@@ -16,12 +16,12 @@ export const AboutShowcase = () => {
         {/* Left: Bio & Details */}
         <div className="flex-[1.5] flex flex-col gap-8 order-3 lg:order-1">
           <div className="text-gray-700 leading-relaxed font-medium text-base lg:text-lg xl:text-xl space-y-4 lg:space-y-6">
-            <h2 className="text-3xl lg:text-3xl xl:text-4xl font-black text-gray-900 tracking-tight mb-4 lg:mb-6 hidden lg:block">AI Solutions Engineer | Voice AI & LLM Agents</h2>
+            <h2 className="text-3xl lg:text-3xl xl:text-4xl font-black text-gray-900 tracking-tight mb-4 lg:mb-6 hidden lg:block">AI Solutions Engineer | Full Stack Developer</h2>
             <p>
-              I am a <span className="font-bold text-gray-900">Voice AI and LLM developer</span> based in Bengaluru who has designed, prompted, and shipped production conversational agents end to end. My expertise includes building real-time voice systems with natural, low-latency turn-taking and securing RAG pipelines with verified accuracy scores.
+              I am an <span className="font-bold text-gray-900">AI Solutions Engineer and Full Stack Developer</span> based in Bengaluru who designs, prompts, and ships production conversational agents and complete web applications end to end. My expertise spans real-time voice systems with natural, low-latency turn-taking, secure RAG pipelines with verified accuracy scores, and building full-stack products with React, Node.js, and Python.
             </p>
             <p>
-              Previously, I worked as a Full Stack Developer at <span className="font-bold text-gray-900">ASPL Tech Solutions</span>, where I collaborated directly with 5+ clients to gather requirements, run project updates, and translate business goals into production-ready software.
+              I worked as a Full Stack Developer at <span className="font-bold text-gray-900">ASPL Tech Solutions</span>, where I collaborated directly with 5+ clients to gather requirements, run project updates, and translate business goals into production-ready software.
             </p>
             <p>
               My research on AI-powered legal document analysis won <span className="font-bold text-gray-900 bg-yellow-100 px-1 rounded">Best Paper Distinction at NCRIE-2025</span>. This project involved fine-tuning a domain-specific BERT model with LoRA on a single T4 GPU, achieving an 84.9% F1 score.

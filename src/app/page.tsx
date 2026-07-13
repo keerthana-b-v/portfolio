@@ -77,16 +77,17 @@ export default function Home() {
 
         {/* Core Headline & Subhead (Visible by Default) */}
         <div className="text-center max-w-4xl px-6 flex flex-col items-center select-none w-full">
-          <MorphingText 
+          <MorphingText
             texts={[
               "AI Solutions Engineer",
+              "Full Stack Developer",
               "Voice AI Developer",
               "Keerthana B V"
-            ]} 
+            ]}
             className="text-gray-900 tracking-tight font-black leading-none mb-2 md:mb-12"
           />
           <p className="text-[13px] md:text-lg text-gray-500 max-w-2xl leading-relaxed font-medium mt-6 md:mt-16">
-            Voice AI and LLM developer who has designed, prompted, and shipped production conversational agents end to end — from real-time Vapi voice agents to secure, evaluated RAG pipelines.
+            AI-focused Full Stack Developer who has designed, prompted, and shipped production conversational agents and web applications end to end — from real-time Vapi voice agents and secure, evaluated RAG pipelines to full-stack React/Node.js platforms.
           </p>
         </div>
       </div>
